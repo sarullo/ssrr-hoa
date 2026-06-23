@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sunnyside Ridge Road HOA | Live in the Clouds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #B8965A; --gold-light: #D4B483; --gold-pale: #F5EDD8;
+    --forest: #2C4A3E; --forest-mid: #3D6B5C; --forest-light: #EAF2EE;
+    --cream: #FAF7F2; --stone: #8A8378; --charcoal: #2A2825; --warm-white: #FFFDF9;
+    --border: rgba(184,150,90,0.2);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "DM Sans", sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.7; }
+  nav { background: var(--forest); position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--gold); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
+  .nav-logo { font-family: "Playfair Display", serif; color: var(--gold-light); font-size: 1.1rem; font-weight: 600; text-decoration: none; letter-spacing: 0.02em; cursor: pointer; }
+  .nav-logo span { display: block; font-family: "DM Sans", sans-serif; font-size: 0.65rem; font-weight: 300; color: rgba(255,255,255,0.55); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 1px; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 0.45rem 0.9rem; border-radius: 6px; transition: all 0.2s; cursor: pointer; letter-spacing: 0.02em; }
+  .nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .nav-links a.active { background: var(--gold); color: var(--forest); }
+  .nav-btn-login { background: transparent !important; border: 1px solid var(--gold) !important; color: var(--gold-light) !important; }
+  .nav-btn-login:hover { background: var(--gold) !important; color: var(--forest) !important; }
+  .page { display: none; } .page.active { display: block; }
+  .hero { background: linear-gradient(160deg, var(--forest) 0%, #1a3328 100%); padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23B8965A' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero h1 { font-family: "Playfair Display", serif; font-size: clamp(2.2rem, 5vw, 3.8rem); color: #fff; font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+  .hero-tagline { font-size: 1.15rem; color: rgba(255,255,255,0.65); font-weight: 300; font-style: italic; margin-bottom: 2rem; font-family: "Playfair Display", serif; }
+  .hero-divider { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 2rem; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: "Playfair Display", serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); display: block; }
+  .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); font-weight: 500; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .section-title { font-family: "Playfair Display", serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--forest); line-height: 1.2; }
+  .section-subtitle { margin-top: 0.75rem; color: var(--stone); font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .gold-rule { width: 40px; height: 2px; background: var(--gold); margin: 1rem auto 0; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(44,74,62,0.1); }
+  .card-icon { width: 48px; height: 48px; background: var(--forest-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.4rem; }
+  .card h3 { font-family: "Playfair Display", serif; font-size: 1.2rem; font-weight: 600; color: var(--forest); margin-bottom: 0.6rem; }
+  .card p { color: var(--stone); font-size: 0.9rem; line-height: 1.7; }
+  .card-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.82rem; font-weight: 600; color: var(--forest-mid); text-decoration: none; cursor: pointer; letter-spacing: 0.03em; }
+  .card-link:hover { color: var(--gold); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hamburger { display: flex; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--forest); border-top: 1px solid rgba(184,150,90,0.3); padding: 0.5rem 1rem 1rem; gap: 0.25rem; z-index: 99; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 0.6rem 1rem; font-size: 0.9rem; }
+  }
+  .about-text h2 { font-family: "Playfair Display", serif; font-size: 2rem; font-weight: 700; color: var(--forest); margin-bottom: 1.5rem; line-height: 1.2; }
+  .about-text p { color: var(--stone); margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text p strong { color: var(--charcoal); font-weight: 600; }
+  .about-aside { background: var(--forest); border-radius: 16px; padding: 2.5rem; color: #fff; }
+  .about-aside h3 { font-family: "Playfair Display", serif; font-size: 1.3rem; color: var(--gold-light); margin-bottom: 1.5rem; font-weight: 600; }
+  .membership-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .membership-item:last-child { border-bottom: none; }
+  .membership-badge { background: var(--gold); color: var(--forest); font-weight: 700; font-size: 0.9rem; padding: 0.25rem 0.6rem; border-radius: 6px; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+  .membership-info { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+  .membership-info strong { color: #fff; display: block; font-size: 1rem; margin-bottom: 2px; }
+  .news-bg { background: var(--forest-light); }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+  .news-card { background: var(--warm-white); border-radius: 12px; padding: 1.75rem; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); }
+  .news-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
+  .tag-safety { background: #FEF3C7; color: #92400E; } .tag-community { background: #D1FAE5; color: #065F46; }
+  .tag-maintenance { background: #DBEAFE; color: #1E40AF; } .tag-alert { background: #FEE2E2; color: #991B1B; }
+  .news-card h3 { font-family: "Playfair Display", serif; font-size: 1.1rem; font-weight: 600; color: var(--forest); margin-bottom: 0.5rem; line-height: 1.3; }
+  .news-card p { font-size: 0.88rem; color: var(--stone); line-height: 1.65; }
+  .news-date { font-size: 0.75rem; color: var(--stone); margin-top: 0.75rem; font-weight: 500; }
+  .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .quick-link { background: var(--warm-white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; text-decoration: none; color: inherit; }
+  .quick-link:hover { background: var(--forest); border-color: var(--forest); }
+  .quick-link:hover .ql-icon { background: rgba(255,255,255,0.15); }
+  .quick-link:hover .ql-title { color: #fff; }
+  .quick-link:hover .ql-sub { color: rgba(255,255,255,0.65); }
+  .ql-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--forest-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; transition: background 0.2s; }
+  .ql-title { font-weight: 600; font-size: 0.92rem; color: var(--forest); margin-bottom: 0.25rem; transition: color 0.2s; }
+  .ql-sub { font-size: 0.78rem; color: var(--stone); transition: color 0.2s; }
+  .emergency-banner { background: var(--forest); border-left: 4px solid var(--gold); border-radius: 12px; padding: 2rem 2.5rem; margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+  .emergency-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+  .emergency-banner h3 { font-family: "Playfair Display", serif; color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.4rem; }
+  .emergency-banner p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+  .ep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .ep-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+  .ep-card h4 { font-weight: 600; color: var(--forest); margin-bottom: 0.4rem; font-size: 0.95rem; }
+  .ep-card p { font-size: 0.85rem; color: var(--stone); }
+  .ep-role-badge { display: inline-block; background: var(--gold-pale); color: var(--forest); font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .crime-info { background: var(--warm-white); border-radius: 12px; padding: 2rem; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .crime-info h3 { font-family: "Playfair Display", serif; font-size: 1.2rem; color: var(--forest); margin-bottom: 0.75rem; }
+  .crime-info p { color: var(--stone); font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .crime-info ul { padding-left: 1.2rem; color: var(--stone); font-size: 0.9rem; }
+  .crime-info ul li { margin-bottom: 0.35rem; }
+  .alert-box { background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; font-size: 0.9rem; color: #78350F; }
+  .alert-box strong { display: block; margin-bottom: 0.25rem; font-size: 1rem; }
+  .login-wrapper { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 3rem 1rem; }
+  .login-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; width: 100%; max-width: 420px; box-shadow: 0 4px 40px rgba(44,74,62,0.08); }
+  .login-logo { text-align: center; margin-bottom: 2rem; }
+  .login-logo .crest { width: 64px; height: 64px; background: var(--forest); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+  .login-logo h2 { font-family: "Playfair Display", serif; color: var(--forest); font-size: 1.4rem; margin-bottom: 0.25rem; }
+  .login-logo p { color: var(--stone); font-size: 0.85rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+  .form-group input { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid rgba(44,74,62,0.2); border-radius: 8px; font-family: "DM Sans", sans-serif; font-size: 0.95rem; color: var(--charcoal); background: #fff; transition: border-color 0.2s; outline: none; }
+  .form-group input:focus { border-color: var(--forest); }
+  .btn-primary { width: 100%; padding: 0.85rem; background: var(--forest); color: #fff; border: none; border-radius: 8px; font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--forest-mid); }
+  .login-hint { text-align: center; margin-top: 1.25rem; font-size: 0.8rem; color: var(--stone); background: var(--forest-light); padding: 0.75rem; border-radius: 8px; }
+  .login-hint strong { color: var(--forest); }
+  .login-error { background: #FEE2E2; color: #991B1B; font-size: 0.85rem; padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; display: none; }
+  .docs-header { background: var(--forest); padding: 3rem 2rem; text-align: center; border-bottom: 3px solid var(--gold); }
+  .docs-header h1 { font-family: "Playfair Display", serif; color: #fff; font-size: 2rem; margin-bottom: 0.5rem; }
+  .docs-header p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+  .docs-user-bar { background: var(--gold-pale); border-bottom: 1px solid var(--border); padding: 0.6rem 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--forest); }
+  .docs-user-bar strong { font-weight: 600; }
+  .logout-btn { background: transparent; border: 1px solid var(--forest); color: var(--forest); padding: 0.25rem 0.75rem; border-radius: 5px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: "DM Sans", sans-serif; transition: all 0.2s; }
+  .logout-btn:hover { background: var(--forest); color: #fff; }
+  .doc-category { margin-bottom: 2.5rem; }
+  .doc-category h3 { font-family: "Playfair Display", serif; font-size: 1.25rem; color: var(--forest); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+  .doc-list { list-style: none; }
+  .doc-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--warm-white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.5rem; transition: background 0.15s; }
+  .doc-item:hover { background: var(--forest-light); }
+  .doc-item-left { display: flex; align-items: center; gap: 0.75rem; }
+  .doc-icon { font-size: 1.2rem; }
+  .doc-name { font-weight: 500; font-size: 0.9rem; color: var(--charcoal); }
+  .doc-meta { font-size: 0.75rem; color: var(--stone); }
+  .doc-download { font-size: 0.78rem; font-weight: 600; color: var(--forest-mid); background: var(--forest-light); border: none; padding: 0.35rem 0.75rem; border-radius: 5px; cursor: pointer; font-family: "DM Sans", sans-serif; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .doc-download:hover { background: var(--forest); color: #fff; }
+  .page-hero { background: var(--forest); padding: 3.5rem 2rem; text-align: center; }
+  .page-hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .page-hero h1 { font-family: "Playfair Display", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: #fff; font-weight: 700; }
+  .page-hero p { color: rgba(255,255,255,0.65); font-size: 1rem; margin-top: 0.75rem; font-style: italic; font-family: "Playfair Display", serif; }
+  .section-divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+  /* PHOTO GALLERY */
+  .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+  .photo-item { aspect-ratio: 1; overflow: hidden; border-radius: 6px; cursor: pointer; background: var(--forest-light); }
+  .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+  .photo-item:hover img { transform: scale(1.05); }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 4px; }
+  .lightbox-close { position: fixed; top: 1.5rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.6); text-align: center; padding: 3rem 2rem; font-size: 0.82rem; margin-top: 4rem; }
+  footer .footer-name { font-family: "Playfair Display", serif; color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.4rem; }
+  footer a { color: var(--gold); text-decoration: none; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">SSRR HOA<span>Sunnyside Ridge Road</span></a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+      <li><a onclick="showPage('news')" id="nav-news">News</a></li>
+      <li><a onclick="showPage('emergency')" id="nav-emergency">Emergency Prep</a></li>
+      <li><a onclick="showPage('crime')" id="nav-crime">Crime &amp; Safety</a></li>
+      <li><a onclick="showPage('photos')" id="nav-photos">Historic Photos</a></li>
+      <li><a onclick="showPage('documents')" id="nav-documents" class="nav-btn-login">🔒 Member Documents</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <p class="hero-eyebrow">Rancho Palos Verdes, California</p>
+    <h1>Sunnyside Ridge Road<br>Homeowners Association</h1>
+    <p class="hero-tagline">Live in the Clouds…</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Member Families</span></div>
+      <div class="stat-item"><span class="stat-num">1955</span><span class="stat-label">Est. by James Cornell</span></div>
+      <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Streets Served</span></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Serving Our Hilltop Community</h2>
+      <p class="section-subtitle">The SSRR HOA keeps our neighborhood beautiful, safe, and connected for all residents.</p>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🏡</div><h3>Neighborhood Upkeep</h3><p>We maintain the entrance, common areas, and landscaping to keep Sunnyside Ridge Road looking its best year-round.</p><a class="card-link" onclick="showPage('about')">Learn more →</a></div>
+      <div class="card"><div class="card-icon">🚨</div><h3>Emergency Preparedness</h3><p>We coordinate neighborhood-wide emergency planning, form volunteer committees, and distribute preparedness resources to all residents.</p><a class="card-link" onclick="showPage('emergency')">View resources →</a></div>
+      <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety Watch</h3><p>We share crime reports from the Lomita Sheriff's Department and coordinate with Block Captains to keep residents informed.</p><a class="card-link" onclick="showPage('crime')">Stay informed →</a></div>
+      <div class="card"><div class="card-icon">📷</div><h3>Historic Photos</h3><p>Browse our collection of historic Palos Verdes photographs, preserving the visual heritage of our community for generations.</p><a class="card-link" onclick="showPage('photos')">View gallery →</a></div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section">
+    <div class="section-header"><p class="section-eyebrow">Quick Access</p><h2 class="section-title">Resident Resources</h2><div class="gold-rule"></div></div>
+    <div class="quick-links">
+      <div class="quick-link" onclick="showPage('documents')"><div class="ql-icon">📄</div><div class="ql-title">HOA Documents</div><div class="ql-sub">Members only</div></div>
+      <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon">📷</div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
+      <div class="quick-link" onclick="showPage('emergency')"><div class="ql-icon">🆘</div><div class="ql-title">Emergency Prep</div><div class="ql-sub">Disaster kits &amp; plans</div></div>
+      <div class="quick-link" onclick="showPage('crime')"><div class="ql-icon">🚔</div><div class="ql-title">Crime Reports</div><div class="ql-sub">Sheriff updates</div></div>
+      <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon">📬</div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
+    </div>
+  </div>
+  <div class="news-bg">
+    <div class="section">
+      <div class="section-header"><p class="section-eyebrow">Community Board</p><h2 class="section-title">Latest Updates</h2><div class="gold-rule"></div></div>
+      <div class="news-grid">
+        <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft on the Rise</h3><p>Several residents have reported mail theft leading to fraudulent charges. Invest in a locking mailbox or use USPS hold service when traveling.</p><div class="news-date">Community Notice</div></div>
+        <div class="news-card" onclick="showPage('emergency')"><span class="news-tag tag-safety">Emergency Prep</span><h3>Join the Emergency Preparedness Committee</h3><p>The Board is expanding our neighborhood readiness program. Volunteer positions available in medical triage, security, logistics and more.</p><div class="news-date">Board Announcement</div></div>
+        <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Fire Season Reminder: Clear Your Brush</h3><p>With high fire season expected, please ensure all brush and dry vegetation is cleared from around your property. Stay safe this season.</p><div class="news-date">Seasonal Reminder</div></div>
+        <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery Now Online</h3><p>Browse our full collection of 156 historic Palos Verdes photographs, capturing the neighborhood's rich history since before 1955.</p><div class="news-date">New Feature</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Our Community</p><h1>About the HOA</h1><p>Established 1955 · Rancho Palos Verdes, California</p></div>
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>A Community Built on the Ridge</h2>
+        <p>The <strong>Sunnyside Community Association</strong> was established in 1955 when developer James Cornell built and incorporated homes on Sunnyside Ridge Road. For over 70 years, our association has been the backbone of this unique hilltop community.</p>
+        <p>Currently, the Association has a membership of <strong>more than 50 families</strong> who own homes on Sunnyside Ridge, Sol Vista, and Palos Verdes Drive East.</p>
+        <p>Unlike many other residential streets on the peninsula, Sunnyside Ridge is not a private road. Because early homeowners granted the right-of-way to the City of Rancho Palos Verdes, street maintenance is funded and coordinated by the City.</p>
+        <p>The Association is committed to properly maintaining the entrance and neighborhood, in addition to ensuring the well-being of all residents through <strong>emergency preparedness</strong> and <strong>networking activities</strong>.</p>
+      </div>
+      <div>
+        <div class="about-aside">
+          <h3>🏘 Membership Information</h3>
+          <div class="membership-item"><div class="membership-badge">5/yr</div><div class="membership-info"><strong>Required Membership</strong>Required for owners of tracts 1–50 on Sunnyside Ridge as outlined in the association governance documents.</div></div>
+          <div class="membership-item"><div class="membership-badge">5/yr</div><div class="membership-info"><strong>Social Membership</strong>Extended to nearby residents who wish to participate in meetings and activities.</div></div>
+          <div class="membership-item"><div class="membership-badge" style="background:rgba(255,255,255,0.15);color:#fff;">Streets</div><div class="membership-info"><strong>Sunnyside Ridge Road</strong>Sol Vista · Palos Verdes Drive East</div></div>
+        </div>
+        <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1.5rem;">
+          <h4 style="font-family:'Playfair Display',serif;color:var(--forest);margin-bottom:0.5rem;">🔧 Contractor Referral List</h4>
+          <p style="font-size:0.88rem;color:var(--stone);">The HOA maintains a community-sourced list of trusted contractors. Log in to access the referral database.</p>
+          <a class="card-link" onclick="showPage('documents')" style="margin-top:0.75rem;display:inline-flex;">Access contractor list →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div id="page-news" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">What's Happening</p><h1>Community News &amp; Updates</h1><p>Stay informed on HOA announcements and neighborhood happenings</p></div>
+  <div class="section">
+    <div class="news-grid">
+      <div class="news-card"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft &amp; Identity Protection</h3><p>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Protect yourself by investing in a locking mailbox or stopping your mail at USPS.com when on vacation.</p><div class="news-date">Community Notice</div></div>
+      <div class="news-card"><span class="news-tag tag-safety">Fire Safety</span><h3>Welcome Summer — Brush Clearing Required</h3><p>Stay cool this summer, and keep brush clear. High fire season is expected. Please ensure all dry brush and vegetation is cleared from around your home and property lines.</p><div class="news-date">Seasonal Reminder</div></div>
+      <div class="news-card"><span class="news-tag tag-community">Meeting</span><h3>Meeting Minutes Now Online</h3><p>Minutes of all HOA board meetings going back to 2002 are now posted in the Members Documents area. All files are in PDF format. Log in to access.</p><div class="news-date">Board Update</div></div>
+      <div class="news-card"><span class="news-tag tag-alert">Crime</span><h3>Lomita Sheriff Crime Reports Available</h3><p>The HOA posts all crime information in our area as published by the Lomita Sheriff's Department. Check the Crime Reports page often so you are aware of recent crime in the area.</p><div class="news-date">Board Announcement</div></div>
+      <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Septic Tank Maintenance Resources</h3><p>A comprehensive Septic Tank Owner's Manual is available to all members in the documents section. Proper maintenance protects your home investment and the environment.</p><div class="news-date">Resident Resource</div></div>
+      <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery — 156 Images</h3><p>Browse our full collection of historic Palos Verdes photographs now available in the gallery section. A fascinating look at our neighborhood's past.</p><div class="news-date">New Feature</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMERGENCY -->
+<div id="page-emergency" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Emergency Preparedness</h1><p>It's just a matter of time — let's be ready together</p></div>
+  <div class="section">
+    <div class="emergency-banner"><div class="emergency-icon">⚠️</div><div><h3>Be Prepared Before Disaster Strikes</h3><p>It's just a matter of time before a disaster happens. The SSRR HOA Board is committed to coordinating neighborhood-wide readiness so our community can respond effectively in any emergency.</p></div></div>
+    <div class="card-grid" style="margin-bottom:2.5rem;">
+      <div class="card"><div class="card-icon">🧰</div><h3>Build Your Disaster Kit</h3><p>Every household should maintain a well-stocked Disaster Kit with enough supplies for 72 hours. The HOA has assembled a guide covering everything you need.</p><a class="card-link" href="https://www.ready.gov/kit" target="_blank">Get the guide →</a></div>
+      <div class="card"><div class="card-icon">📋</div><h3>Home Emergency Guide</h3><p>FEMA's comprehensive Home Emergency Preparedness Guide covers fire, earthquake, flood, and power outage preparedness for Southern California households.</p><a class="card-link" href="https://www.fema.gov/emergency-managers/individuals-communities" target="_blank">Access FEMA guide →</a></div>
+      <div class="card"><div class="card-icon">🏙</div><h3>City of RPV Resources</h3><p>The City of Rancho Palos Verdes has an excellent publication explaining the peninsula's emergency preparedness initiatives and available training options.</p><a class="card-link" href="https://www.rpvca.gov/1069/Emergency-Preparedness" target="_blank">Visit RPV.gov →</a></div>
+    </div>
+    <div class="section-header" style="text-align:left;margin-bottom:1.5rem;">
+      <p class="section-eyebrow">Volunteer Positions</p>
+      <h2 class="section-title" style="font-size:1.6rem;">Join the Emergency Preparedness Committee</h2>
+      <p class="section-subtitle" style="margin:0.5rem 0 0;text-align:left;">Volunteer positions are open — no experience required. Training materials will be provided once you identify your area of interest.</p>
+    </div>
+    <div class="ep-grid">
+      <div class="ep-card"><div class="ep-role-badge">Command</div><h4>Incident Command Center</h4><p>Coordinate overall neighborhood response during an emergency event.</p></div>
+      <div class="ep-card"><div class="ep-role-badge">Medical</div><h4>Medical Triage</h4><p>Assess and categorize victims: Black, Red, Yellow, and Green priority levels.</p></div>
+      <div class="ep-card"><div class="ep-role-badge">Security</div><h4>Security Team</h4><p>Allow emergency services access and prevent unauthorized entry to discourage looting.</p></div>
+      <div class="ep-card"><div class="ep-role-badge">Planning</div><h4>Planning Section</h4><p>Develop situational awareness and resource tracking during an incident.</p></div>
+      <div class="ep-card"><div class="ep-role-badge">Logistics</div><h4>Logistics Section</h4><p>Manage supplies, equipment, and resource distribution during response operations.</p></div>
+      <div class="ep-card"><div class="ep-role-badge">Finance</div><h4>Finance &amp; Administration</h4><p>Track expenditures and manage administrative records during and after an emergency.</p></div>
+    </div>
+    <div style="background:var(--forest-light);border-radius:12px;padding:2rem;margin-top:2rem;border:1px solid var(--border);">
+      <h4 style="font-family:'Playfair Display',serif;color:var(--forest);font-size:1.15rem;margin-bottom:0.5rem;">🙋 Ready to Volunteer?</h4>
+      <p style="color:var(--stone);font-size:0.9rem;">Contact the Board to express your interest. Once you identify the area you'd like to help in, the Emergency Committee will provide the training manuals you need.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CRIME -->
+<div id="page-crime" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Crime Reports &amp; Neighborhood Watch</h1><p>Stay informed, stay safe, share with your neighbors</p></div>
+  <div class="section">
+    <div class="alert-box"><strong>⚠️ Recent Alert: Mail Theft</strong>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Invest in a locking mailbox or use USPS Hold Mail when traveling.</div>
+    <div class="crime-info"><h3>🚔 Lomita Sheriff's Department</h3><p>The HOA posts all crime information in our area as published by the Lomita Sheriff's Department. Check regularly to stay aware of recent crime activity.</p><p style="margin-top:0.75rem;">You can also listen to a <strong>South Bay Police live audio feed</strong> in real time for up-to-the-minute public safety information.</p></div>
+    <div class="crime-info"><h3>👁 What is Neighborhood Watch?</h3><p>As a member of an organized Neighborhood Watch, our street is part of a citywide crime prevention network connecting Neighborhood Watch, the Sheriff's Department, and Block Captains.</p><p style="margin-top:0.75rem;"><strong>How it works:</strong></p><ul style="margin-top:0.5rem;"><li>Crime warnings are emailed to Block Captains</li><li>Block Captains disseminate alerts to Block Assistants</li><li>Alerts are shared with all participating Neighborhood Watch residents</li></ul></div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">📬</div><h3>Stop Your Mail</h3><p>Prevent mail theft when you're on vacation. Put your USPS mail on hold online — it takes just a few minutes.</p><a class="card-link" href="https://holdmail.usps.com/holdmail/" target="_blank">Hold mail at USPS.com →</a></div>
+      <div class="card"><div class="card-icon">🔒</div><h3>Locking Mailboxes</h3><p>Consider upgrading to a locking mailbox to protect against the growing threat of mail theft and identity fraud in the area.</p></div>
+      <div class="card"><div class="card-icon">📻</div><h3>Live Police Audio</h3><p>Listen to South Bay Police and Fire Department live audio feeds to stay informed about local incidents in real time.</p><a class="card-link" href="https://www.broadcastify.com/listen/ctid/396" target="_blank">Listen live →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORIC PHOTOS -->
+<div id="page-photos" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Community Heritage</p><h1>Historic Palos Verdes Photos</h1><p>156 photographs preserving our neighborhood's visual history</p></div>
+  <div class="section">
+    <div class="photo-gallery">
+<div class="photo-item" onclick="openPhoto('Photos/3830280769_e64af955b4_b.jpg')"><img src="Photos/3830280769_e64af955b4_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830552093_dd11e1d837_b.jpg')"><img src="Photos/3830552093_dd11e1d837_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993001_3cca61beab_z.jpg')"><img src="Photos/3830993001_3cca61beab_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993025_379a1456c2_z.jpg')"><img src="Photos/3830993025_379a1456c2_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993045_4b3ef2ba87_z.jpg')"><img src="Photos/3830993045_4b3ef2ba87_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993053_c4ffca8c71_z.jpg')"><img src="Photos/3830993053_c4ffca8c71_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993213_a2e96302db_z.jpg')"><img src="Photos/3830993213_a2e96302db_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3830993219_e0a0078a6d_z.jpg')"><img src="Photos/3830993219_e0a0078a6d_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831026985_ddaeff6166_z.jpg')"><img src="Photos/3831026985_ddaeff6166_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831027003_536aa75dd3_z.jpg')"><img src="Photos/3831027003_536aa75dd3_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831027013_cdf137e279_z.jpg')"><img src="Photos/3831027013_cdf137e279_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831027041_58618369f9_z.jpg')"><img src="Photos/3831027041_58618369f9_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831027075_d218182159_z.jpg')"><img src="Photos/3831027075_d218182159_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831027105_91ce636a10_z.jpg')"><img src="Photos/3831027105_91ce636a10_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831076566_ff47a2dabd_b.jpg')"><img src="Photos/3831076566_ff47a2dabd_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831076650_68838bac28_b.jpg')"><img src="Photos/3831076650_68838bac28_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311241_c52eff7e7f_z.jpg')"><img src="Photos/3831311241_c52eff7e7f_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311273_6cb9fd8ef1_z.jpg')"><img src="Photos/3831311273_6cb9fd8ef1_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311303_a05547f625_z.jpg')"><img src="Photos/3831311303_a05547f625_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311321_5e0c99b0d9_z.jpg')"><img src="Photos/3831311321_5e0c99b0d9_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311331_56f919b1d6_z.jpg')"><img src="Photos/3831311331_56f919b1d6_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831311371_f4cc7d188f_z.jpg')"><img src="Photos/3831311371_f4cc7d188f_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831788924_6c402c1b38_z.jpg')"><img src="Photos/3831788924_6c402c1b38_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831788948_2210f82b75_b.jpg')"><img src="Photos/3831788948_2210f82b75_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831788988_afaf35ca95_z.jpg')"><img src="Photos/3831788988_afaf35ca95_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831789004_e9a85c1924_z.jpg')"><img src="Photos/3831789004_e9a85c1924_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831789020_af4003408a_z.jpg')"><img src="Photos/3831789020_af4003408a_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831789062_86742d4eda_z.jpg')"><img src="Photos/3831789062_86742d4eda_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822078_b829ae346a_z.jpg')"><img src="Photos/3831822078_b829ae346a_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822106_71672a162e_z.jpg')"><img src="Photos/3831822106_71672a162e_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822124_c73d0269a8_z.jpg')"><img src="Photos/3831822124_c73d0269a8_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822224_15e938a8a0_z.jpg')"><img src="Photos/3831822224_15e938a8a0_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822300_66734f85b8_z.jpg')"><img src="Photos/3831822300_66734f85b8_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822316_cdbd24e3d4_z.jpg')"><img src="Photos/3831822316_cdbd24e3d4_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822336_e8862e72c7_z.jpg')"><img src="Photos/3831822336_e8862e72c7_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3831822354_539e525ea5_b.jpg')"><img src="Photos/3831822354_539e525ea5_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105754_0ea10571f8_z.jpg')"><img src="Photos/3832105754_0ea10571f8_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105768_46545fa450_z.jpg')"><img src="Photos/3832105768_46545fa450_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105846_9113b7a1f5_z.jpg')"><img src="Photos/3832105846_9113b7a1f5_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105956_ba11e9181c_z.jpg')"><img src="Photos/3832105956_ba11e9181c_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105970_20057ab0e3_z.jpg')"><img src="Photos/3832105970_20057ab0e3_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832105996_956b852ec6_z.jpg')"><img src="Photos/3832105996_956b852ec6_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3832106006_5cfa676988_z.jpg')"><img src="Photos/3832106006_5cfa676988_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810551_0907c95ab8_b.jpg')"><img src="Photos/3839810551_0907c95ab8_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810617_a18ec3a82f_b.jpg')"><img src="Photos/3839810617_a18ec3a82f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810681_8c1f5c803a_b.jpg')"><img src="Photos/3839810681_8c1f5c803a_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810757_40c6bbb178_b.jpg')"><img src="Photos/3839810757_40c6bbb178_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810837_2ded442ec2_b.jpg')"><img src="Photos/3839810837_2ded442ec2_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839810975_cac17e5cfb_b.jpg')"><img src="Photos/3839810975_cac17e5cfb_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839811031_8a0ab3650a_b.jpg')"><img src="Photos/3839811031_8a0ab3650a_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839828009_2bef03915b_b.jpg')"><img src="Photos/3839828009_2bef03915b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3839828085_ec8a83f6b6_b.jpg')"><img src="Photos/3839828085_ec8a83f6b6_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3840584110_07da72f421_m.jpg')"><img src="Photos/3840584110_07da72f421_m.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3840584126_0290719060_m.jpg')"><img src="Photos/3840584126_0290719060_m.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3840599274_80035d469b_b.jpg')"><img src="Photos/3840599274_80035d469b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3840599450_84a2fc16cc_b.jpg')"><img src="Photos/3840599450_84a2fc16cc_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3853478713_349f2898be_z.jpg')"><img src="Photos/3853478713_349f2898be_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3853478733_2e51b15bda_z.jpg')"><img src="Photos/3853478733_2e51b15bda_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3853478747_19157b9ac8_z.jpg')"><img src="Photos/3853478747_19157b9ac8_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3853478761_1bcfb002c0_z.jpg')"><img src="Photos/3853478761_1bcfb002c0_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3853478863_0abea7ffdc_z.jpg')"><img src="Photos/3853478863_0abea7ffdc_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3854268348_22e88f3b69_z.jpg')"><img src="Photos/3854268348_22e88f3b69_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3854268360_d8c7f88151_z.jpg')"><img src="Photos/3854268360_d8c7f88151_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3854268394_a1825f2ded_z.jpg')"><img src="Photos/3854268394_a1825f2ded_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3854268414_4a30547805_z.jpg')"><img src="Photos/3854268414_4a30547805_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599357_c059448070_b.jpg')"><img src="Photos/3855599357_c059448070_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599567_3c802b4748_b.jpg')"><img src="Photos/3855599567_3c802b4748_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599649_ce473d016f_b.jpg')"><img src="Photos/3855599649_ce473d016f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599727_89f5220b59_b.jpg')"><img src="Photos/3855599727_89f5220b59_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599783_c05fd6456d_b.jpg')"><img src="Photos/3855599783_c05fd6456d_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855599875_03de1d367b_b.jpg')"><img src="Photos/3855599875_03de1d367b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855600011_4cc4eab01c_b.jpg')"><img src="Photos/3855600011_4cc4eab01c_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855600081_43e76cbf16_b.jpg')"><img src="Photos/3855600081_43e76cbf16_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855612861_6c94256649_b.jpg')"><img src="Photos/3855612861_6c94256649_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855613069_307e2106d5_b.jpg')"><img src="Photos/3855613069_307e2106d5_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855613129_76efd73505_b.jpg')"><img src="Photos/3855613129_76efd73505_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855613255_65cdfa2402_b.jpg')"><img src="Photos/3855613255_65cdfa2402_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855613485_45007e1908_b.jpg')"><img src="Photos/3855613485_45007e1908_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855618967_eff8618247_b.jpg')"><img src="Photos/3855618967_eff8618247_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855619009_29484af7a7_b.jpg')"><img src="Photos/3855619009_29484af7a7_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855619065_2487d4f9a0_b.jpg')"><img src="Photos/3855619065_2487d4f9a0_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855811823_d1ecceeda6_b.jpg')"><img src="Photos/3855811823_d1ecceeda6_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855811937_3ec767b61f_b.jpg')"><img src="Photos/3855811937_3ec767b61f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855812327_5f8d803cf5_b.jpg')"><img src="Photos/3855812327_5f8d803cf5_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855812575_eed785a01e_b.jpg')"><img src="Photos/3855812575_eed785a01e_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855812635_907b61c03f_b.jpg')"><img src="Photos/3855812635_907b61c03f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855874529_d35c994e9f_b.jpg')"><img src="Photos/3855874529_d35c994e9f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855874587_47596bbb51_b.jpg')"><img src="Photos/3855874587_47596bbb51_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855874671_a180bb4699_b.jpg')"><img src="Photos/3855874671_a180bb4699_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855899575_95b8bbbf50_b.jpg')"><img src="Photos/3855899575_95b8bbbf50_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855899659_e3607b7ab5_b.jpg')"><img src="Photos/3855899659_e3607b7ab5_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3855899719_68857d0db2_b.jpg')"><img src="Photos/3855899719_68857d0db2_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856389012_44c7e6625b_b.jpg')"><img src="Photos/3856389012_44c7e6625b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856402596_df17f5de00_b.jpg')"><img src="Photos/3856402596_df17f5de00_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856402848_f3bfc44d74_b.jpg')"><img src="Photos/3856402848_f3bfc44d74_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856402972_2a4d0f344b_b.jpg')"><img src="Photos/3856402972_2a4d0f344b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856403048_1b3030f0dd_b.jpg')"><img src="Photos/3856403048_1b3030f0dd_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856403126_77f2246e87_b.jpg')"><img src="Photos/3856403126_77f2246e87_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856403262_26ee629bbe_b.jpg')"><img src="Photos/3856403262_26ee629bbe_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856408566_ce554d68d0_b.jpg')"><img src="Photos/3856408566_ce554d68d0_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856408832_5cf98955aa_b.jpg')"><img src="Photos/3856408832_5cf98955aa_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856408924_b21381cd97_b.jpg')"><img src="Photos/3856408924_b21381cd97_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856408970_aaab59da1a_b.jpg')"><img src="Photos/3856408970_aaab59da1a_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856409056_62e6197500_b.jpg')"><img src="Photos/3856409056_62e6197500_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856601432_12db673f1a_b.jpg')"><img src="Photos/3856601432_12db673f1a_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856601480_d66b9a14f1_b.jpg')"><img src="Photos/3856601480_d66b9a14f1_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856601566_a084ba3871_b.jpg')"><img src="Photos/3856601566_a084ba3871_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856601944_a4bc9b9869_b.jpg')"><img src="Photos/3856601944_a4bc9b9869_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856602152_f5746f3787_b.jpg')"><img src="Photos/3856602152_f5746f3787_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856602236_8182b7c1c6_b.jpg')"><img src="Photos/3856602236_8182b7c1c6_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856664252_3d222f0567_b.jpg')"><img src="Photos/3856664252_3d222f0567_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856664416_0d97f1f225_b.jpg')"><img src="Photos/3856664416_0d97f1f225_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856664492_df088df86b_b.jpg')"><img src="Photos/3856664492_df088df86b_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856664542_e4ab1bbee4_b.jpg')"><img src="Photos/3856664542_e4ab1bbee4_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856664562_998fae561f_b.jpg')"><img src="Photos/3856664562_998fae561f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856688564_808f09f260_b.jpg')"><img src="Photos/3856688564_808f09f260_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856688648_73810db44c_b.jpg')"><img src="Photos/3856688648_73810db44c_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856688842_fdea6504ac_b.jpg')"><img src="Photos/3856688842_fdea6504ac_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856688950_78afa3e4fe_b.jpg')"><img src="Photos/3856688950_78afa3e4fe_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856689026_bc23236375_b.jpg')"><img src="Photos/3856689026_bc23236375_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856689062_2bd1c22082_b.jpg')"><img src="Photos/3856689062_2bd1c22082_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856689426_8938f85b42_b.jpg')"><img src="Photos/3856689426_8938f85b42_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3856689476_88307c047c_b.jpg')"><img src="Photos/3856689476_88307c047c_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859139167_703c8bd6f9_b.jpg')"><img src="Photos/3859139167_703c8bd6f9_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859139249_5ae73aa4e0_b.jpg')"><img src="Photos/3859139249_5ae73aa4e0_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859224929_ff6929555d_b.jpg')"><img src="Photos/3859224929_ff6929555d_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859225651_481bb5a50a_b.jpg')"><img src="Photos/3859225651_481bb5a50a_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859225929_d992337ebb_b.jpg')"><img src="Photos/3859225929_d992337ebb_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266299_3a68c4f8d2_z.jpg')"><img src="Photos/3859266299_3a68c4f8d2_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266331_f42408cb09_z.jpg')"><img src="Photos/3859266331_f42408cb09_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266351_0dd8ebbb44_z.jpg')"><img src="Photos/3859266351_0dd8ebbb44_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266369_894cdc1b81_z.jpg')"><img src="Photos/3859266369_894cdc1b81_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266399_5f3222de42_z.jpg')"><img src="Photos/3859266399_5f3222de42_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266503_98d43ceff2_z.jpg')"><img src="Photos/3859266503_98d43ceff2_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266549_675b205448_z.jpg')"><img src="Photos/3859266549_675b205448_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266597_dfde386968_z.jpg')"><img src="Photos/3859266597_dfde386968_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266621_df47602920_z.jpg')"><img src="Photos/3859266621_df47602920_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859266647_b1ab687a4e_z.jpg')"><img src="Photos/3859266647_b1ab687a4e_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859926808_45dccedcdc_b.jpg')"><img src="Photos/3859926808_45dccedcdc_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859933118_e1a5c5103f_b.jpg')"><img src="Photos/3859933118_e1a5c5103f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3859933198_4e2b74bdbd_b.jpg')"><img src="Photos/3859933198_4e2b74bdbd_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860011600_575a031bd6_b.jpg')"><img src="Photos/3860011600_575a031bd6_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860011686_91b34b9585_b.jpg')"><img src="Photos/3860011686_91b34b9585_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860011750_73b1e9cd07_b-1.jpg')"><img src="Photos/3860011750_73b1e9cd07_b-1.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860011750_73b1e9cd07_b.jpg')"><img src="Photos/3860011750_73b1e9cd07_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860011974_d086d27773_b.jpg')"><img src="Photos/3860011974_d086d27773_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860012078_d3a4c4f42f_b.jpg')"><img src="Photos/3860012078_d3a4c4f42f_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860012644_9472488779_b.jpg')"><img src="Photos/3860012644_9472488779_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860012672_396bba3dd2_b.jpg')"><img src="Photos/3860012672_396bba3dd2_b.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052538_ce799e7de9_z.jpg')"><img src="Photos/3860052538_ce799e7de9_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052556_cef96a796f_z.jpg')"><img src="Photos/3860052556_cef96a796f_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052584_a63c289f55_z.jpg')"><img src="Photos/3860052584_a63c289f55_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052684_4d5f9e5a5a_z.jpg')"><img src="Photos/3860052684_4d5f9e5a5a_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052694_65ac5b1847_z.jpg')"><img src="Photos/3860052694_65ac5b1847_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052744_230d446816_z.jpg')"><img src="Photos/3860052744_230d446816_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+<div class="photo-item" onclick="openPhoto('Photos/3860052770_a0451d3c0c_z.jpg')"><img src="Photos/3860052770_a0451d3c0c_z.jpg" alt="Historic Palos Verdes photo" loading="lazy"/></div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTS (Login Gate) -->
+<div id="page-documents" class="page">
+  <div id="login-view">
+    <div class="page-hero"><p class="page-hero-eyebrow">Members Only</p><h1>HOA Documents</h1><p>Please log in with your member credentials to access documents</p></div>
+    <div class="login-wrapper">
+      <div class="login-card">
+        <div class="login-logo"><div class="crest">🏔</div><h2>Member Login</h2><p>Sunnyside Ridge Road HOA</p></div>
+        <div id="login-error" class="login-error">Incorrect username or password. Please try again.</div>
+        <div class="form-group"><label for="login-user">Username</label><input type="text" id="login-user" placeholder="Enter your username" autocomplete="username"/></div>
+        <div class="form-group"><label for="login-pass">Password</label><input type="password" id="login-pass" placeholder="Enter your password" autocomplete="current-password" onkeydown="if(event.key==='Enter') attemptLogin()"/></div>
+        <button class="btn-primary" onclick="attemptLogin()">Sign In to Member Area</button>
+        <div class="login-hint"><strong>Demo credentials:</strong> username <code>ssrrmember</code> / password <code>ridge2024</code></div>
+      </div>
+    </div>
+  </div>
+  <div id="docs-view" style="display:none;">
+    <div class="docs-header"><h1>📂 HOA Documents</h1><p>Sunnyside Ridge Road Homeowners Association — Member Portal</p></div>
+    <div class="docs-user-bar"><span>Logged in as <strong>SSRR Member</strong></span><button class="logout-btn" onclick="logout()">Sign Out</button></div>
+    <div class="section">
+      <div class="doc-category">
+        <h3>📋 Governance &amp; Bylaws</h3>
+        <ul class="doc-list">
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Protective Restrictions Amendment 2004</div><div class="doc-meta">51 KB · PDF</div></div></div><a class="doc-download" href="pdf/Protective%20Restrictions%20Amendment%202004.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">SSRR Articles of Incorporation</div><div class="doc-meta">186 KB · PDF</div></div></div><a class="doc-download" href="pdf/SSRR%20Articles%20of%20Incorporation.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">SSRR By-Laws</div><div class="doc-meta">314 KB · PDF</div></div></div><a class="doc-download" href="pdf/SSRR%20By-Laws.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">SSRR Declarations of Protective Restrictions</div><div class="doc-meta">366 KB · PDF</div></div></div><a class="doc-download" href="pdf/SSRR%20Declarations%20of%20Protective%20Restrictions.pdf" target="_blank" download>↓ PDF</a></li>
+        </ul>
+      </div>
+      <div class="doc-category">
+        <h3>📝 Meeting Minutes</h3>
+        <ul class="doc-list">
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2002</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202002.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2003</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202003.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2004</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202004.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2005</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202005.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2006</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202006.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2007</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202007.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2008</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202008.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2009</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202009.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2010</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202010.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2011</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202011.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2012</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202012.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2013</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202013.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes 2014</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%202014.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Annual Meeting Minutes SSRR 2014 </div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Annual%20Meeting%20Minutes%20SSRR%202014%20.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting 2014.06.04</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%202014.06.04.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2002-03-01</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202002-03-01.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2002-07-27</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202002-07-27.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2003-07-30</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202003-07-30.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2003-10-15</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202003-10-15.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2004-03-02</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202004-03-02.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2004-08-03</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202004-08-03.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2005-05-03</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202005-05-03.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2005-05-05</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202005-05-05.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2005-08-08</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202005-08-08.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2006-03-23</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202006-03-23.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2006-06-07</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202006-06-07.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2006-08-10</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202006-08-10.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2006-12-04</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202006-12-04.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2007-02-22</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202007-02-22.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2007-05-30</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202007-05-30.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2007-07-26</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202007-07-26.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2008-03-05</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202008-03-05.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2008-04-17</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202008-04-17.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2009-08-11</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202009-08-11.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2009-11-16</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202009-11-16.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2010-04-12</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202010-04-12.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2010-09-09</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202010-09-09.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2010-11-03</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202010-11-03.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2011-03-14</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202011-03-14.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2011-05-16</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202011-05-16.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2011-06-14</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202011-06-14.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2011-07-13</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202011-07-13.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2011-11-22</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202011-11-22.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-02-22</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-02-22.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-05-24</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-05-24.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-07-07</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-07-07.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-08-21</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-08-21.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-10-09</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-10-09.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2012-12-04</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202012-12-04.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-01-09</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-01-09.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-02-12</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-02-12.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-03-19</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-03-19.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-06-05</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-06-05.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-07-11</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-07-11.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-08-13</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-08-13.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-10-01</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-10-01.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-11-12</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-11-12.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2013-12-10</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202013-12-10.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2014-02-25</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202014-02-25.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2014-04-01</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202014-04-01.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2014-05-07</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202014-05-07.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Meeting Minutes 2014-06-04</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Meeting%20Minutes%202014-06-04.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Special MTG 2014.06.18</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Special%20MTG%202014.06.18.pdf" target="_blank" download>↓ PDF</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="Historic photo"/>
+</div>
+
+<footer>
+  <div class="footer-name">Sunnyside Ridge Road Homeowners Association</div>
+  <div style="margin-top:0.25rem;margin-bottom:1rem;font-style:italic;color:rgba(255,255,255,0.4);">Live in the Clouds…</div>
+  <div>Sunnyside Ridge Rd · Sol Vista · Palos Verdes Drive East · Rancho Palos Verdes, CA</div>
+  <div style="margin-top:0.75rem;">Est. 1955 · <a onclick="showPage('documents')">Member Login</a></div>
+</footer>
+
+<script>
+  const VALID_USER = "ssrrmember", VALID_PASS = "ridge2024";
+  let isLoggedIn = false;
+
+  function toggleMenu() {
+    document.getElementById("hamburger").classList.toggle("open");
+    document.getElementById("nav-links").classList.toggle("open");
+  }
+
+  function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+    document.getElementById("page-" + id).classList.add("active");
+    const n = document.getElementById("nav-" + id);
+    if (n) n.classList.add("active");
+    document.getElementById("hamburger").classList.remove("open");
+    document.getElementById("nav-links").classList.remove("open");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (id === "documents") {
+      if (isLoggedIn) { document.getElementById("login-view").style.display = "none"; document.getElementById("docs-view").style.display = "block"; }
+      else { document.getElementById("login-view").style.display = "block"; document.getElementById("docs-view").style.display = "none"; }
+    }
+  }
+
+  function attemptLogin() {
+    const user = document.getElementById("login-user").value.trim();
+    const pass = document.getElementById("login-pass").value;
+    const err = document.getElementById("login-error");
+    if (user === VALID_USER && pass === VALID_PASS) {
+      isLoggedIn = true; err.style.display = "none";
+      document.getElementById("login-view").style.display = "none";
+      document.getElementById("docs-view").style.display = "block";
+    } else { err.style.display = "block"; document.getElementById("login-pass").value = ""; }
+  }
+
+  function logout() {
+    isLoggedIn = false;
+    document.getElementById("login-user").value = "";
+    document.getElementById("login-pass").value = "";
+    document.getElementById("login-error").style.display = "none";
+    document.getElementById("docs-view").style.display = "none";
+    document.getElementById("login-view").style.display = "block";
+  }
+
+  function openPhoto(src) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+</script>
+</body>
+</html>
