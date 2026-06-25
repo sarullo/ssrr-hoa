@@ -174,7 +174,7 @@
       <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
       <li><a onclick="showPage('about')" id="nav-about">About</a></li>
       <li><a onclick="showPage('news')" id="nav-news">News</a></li>
-      <li><a onclick="showPage('emergency')" id="nav-emergency">Emergency Prep</a></li>
+      <li><a onclick="showPage('calendar')" id="nav-calendar">Social Calendar</a></li>
       <li><a onclick="showPage('crime')" id="nav-crime">Crime &amp; Safety</a></li>
       <li><a onclick="showPage('photos')" id="nav-photos">Historic Photos</a></li>
       <li><a onclick="showPage('documents')" id="nav-documents" class="nav-btn-login">🔒 Member Documents</a></li>
@@ -204,7 +204,7 @@
     </div>
     <div class="card-grid">
       <div class="card"><div class="card-icon">🏡</div><h3>Neighborhood Upkeep</h3><p>We maintain the entrance, common areas, and landscaping to keep Sunnyside Ridge Road looking its best year-round.</p><a class="card-link" onclick="showPage('about')">Learn more →</a></div>
-      <div class="card"><div class="card-icon">🚨</div><h3>Emergency Preparedness</h3><p>We coordinate neighborhood-wide emergency planning, form volunteer committees, and distribute preparedness resources to all residents.</p><a class="card-link" onclick="showPage('emergency')">View resources →</a></div>
+      <div class="card"><div class="card-icon">🎉</div><h3>Social Calendar</h3><p>Stay connected with neighborhood events, block parties, community gatherings, and seasonal celebrations planned throughout the year.</p><a class="card-link" onclick="showPage('calendar')">View calendar →</a></div>
       <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety Watch</h3><p>We share crime reports from the Lomita Sheriff's Department and coordinate with Block Captains to keep residents informed.</p><a class="card-link" onclick="showPage('crime')">Stay informed →</a></div>
       <div class="card"><div class="card-icon">📷</div><h3>Historic Photos</h3><p>Browse our collection of historic Palos Verdes photographs, preserving the visual heritage of our community for generations.</p><a class="card-link" onclick="showPage('photos')">View gallery →</a></div>
     </div>
@@ -215,7 +215,7 @@
     <div class="quick-links">
       <div class="quick-link" onclick="showPage('documents')"><div class="ql-icon">📄</div><div class="ql-title">HOA Documents</div><div class="ql-sub">Members only</div></div>
       <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon">📷</div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
-      <div class="quick-link" onclick="showPage('emergency')"><div class="ql-icon">🆘</div><div class="ql-title">Emergency Prep</div><div class="ql-sub">Disaster kits &amp; plans</div></div>
+      <div class="quick-link" onclick="showPage('calendar')"><div class="ql-icon">🎉</div><div class="ql-title">Social Calendar</div><div class="ql-sub">Events &amp; gatherings</div></div>
       <div class="quick-link" onclick="showPage('crime')"><div class="ql-icon">🚔</div><div class="ql-title">Crime Reports</div><div class="ql-sub">Sheriff updates</div></div>
       <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon">📬</div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
     </div>
@@ -225,7 +225,7 @@
       <div class="section-header"><p class="section-eyebrow">Community Board</p><h2 class="section-title">Latest Updates</h2><div class="gold-rule"></div></div>
       <div class="news-grid">
         <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft on the Rise</h3><p>Several residents have reported mail theft leading to fraudulent charges. Invest in a locking mailbox or use USPS hold service when traveling.</p><div class="news-date">Community Notice</div></div>
-        <div class="news-card" onclick="showPage('emergency')"><span class="news-tag tag-safety">Emergency Prep</span><h3>Join the Emergency Preparedness Committee</h3><p>The Board is expanding our neighborhood readiness program. Volunteer positions available in medical triage, security, logistics and more.</p><div class="news-date">Board Announcement</div></div>
+        <div class="news-card" onclick="showPage('calendar')"><span class="news-tag tag-community">Social Calendar</span><h3>Summer Block Party — Save the Date</h3><p>Join your neighbors for the annual SSRR summer block party. Food, fun, and community on Sunnyside Ridge Road. Details posted in the calendar.</p><div class="news-date">Community Event</div></div>
         <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Fire Season Reminder: Clear Your Brush</h3><p>With high fire season expected, please ensure all brush and dry vegetation is cleared from around your property. Stay safe this season.</p><div class="news-date">Seasonal Reminder</div></div>
         <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery Now Online</h3><p>Browse our full collection of 156 historic Palos Verdes photographs, capturing the neighborhood's rich history since before 1955.</p><div class="news-date">New Feature</div></div>
       </div>
@@ -277,32 +277,25 @@
   </div>
 </div>
 
-<!-- EMERGENCY -->
-<div id="page-emergency" class="page">
-  <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Emergency Preparedness</h1><p>It's just a matter of time — let's be ready together</p></div>
+<!-- SOCIAL CALENDAR -->
+<div id="page-calendar" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Community Life</p><h1>Social Calendar</h1><p>Gatherings, events, and celebrations on Sunnyside Ridge Road</p></div>
   <div class="section">
-    <div class="emergency-banner"><div class="emergency-icon">⚠️</div><div><h3>Be Prepared Before Disaster Strikes</h3><p>It's just a matter of time before a disaster happens. The SSRR HOA Board is committed to coordinating neighborhood-wide readiness so our community can respond effectively in any emergency.</p></div></div>
-    <div class="card-grid" style="margin-bottom:2.5rem;">
-      <div class="card"><div class="card-icon">🧰</div><h3>Build Your Disaster Kit</h3><p>Every household should maintain a well-stocked Disaster Kit with enough supplies for 72 hours. The HOA has assembled a guide covering everything you need.</p><a class="card-link" href="https://www.ready.gov/kit" target="_blank">Get the guide →</a></div>
-      <div class="card"><div class="card-icon">📋</div><h3>Home Emergency Guide</h3><p>FEMA's comprehensive Home Emergency Preparedness Guide covers fire, earthquake, flood, and power outage preparedness for Southern California households.</p><a class="card-link" href="https://www.fema.gov/emergency-managers/individuals-communities" target="_blank">Access FEMA guide →</a></div>
-      <div class="card"><div class="card-icon">🏙</div><h3>City of RPV Resources</h3><p>The City of Rancho Palos Verdes has an excellent publication explaining the peninsula's emergency preparedness initiatives and available training options.</p><a class="card-link" href="https://www.rpvca.gov/1069/Emergency-Preparedness" target="_blank">Visit RPV.gov →</a></div>
+    <div class="section-header">
+      <p class="section-eyebrow">Upcoming Events</p>
+      <h2 class="section-title">What's Coming Up</h2>
+      <p class="section-subtitle">Join your neighbors and stay connected throughout the year.</p>
+      <div class="gold-rule"></div>
     </div>
-    <div class="section-header" style="text-align:left;margin-bottom:1.5rem;">
-      <p class="section-eyebrow">Volunteer Positions</p>
-      <h2 class="section-title" style="font-size:1.6rem;">Join the Emergency Preparedness Committee</h2>
-      <p class="section-subtitle" style="margin:0.5rem 0 0;text-align:left;">Volunteer positions are open — no experience required. Training materials will be provided once you identify your area of interest.</p>
+    <div class="news-grid" style="margin-bottom:3rem;">
+      <div class="news-card"><span class="news-tag tag-community">Block Party</span><h3>Annual Summer Block Party</h3><p>The SSRR HOA's beloved summer tradition. Bring a dish to share and enjoy an evening with your neighbors on the Ridge. Location and exact date TBD — watch for the email announcement.</p><div class="news-date">Summer 2026</div></div>
+      <div class="news-card"><span class="news-tag tag-community">Holiday</span><h3>Holiday Luminary Night</h3><p>Light up Sunnyside Ridge Road for the holidays. Residents line their driveways with luminaries for a magical evening stroll through the neighborhood.</p><div class="news-date">December 2026</div></div>
+      <div class="news-card"><span class="news-tag tag-community">Meeting</span><h3>Annual HOA Meeting</h3><p>The annual membership meeting covers board elections, financials, and neighborhood priorities. All members welcome. Details sent via email closer to the date.</p><div class="news-date">Fall 2026</div></div>
+      <div class="news-card"><span class="news-tag tag-community">Social</span><h3>New Neighbor Welcome</h3><p>Know someone new on the street? Let the Board know and we'll organize a welcome gathering to introduce them to the community.</p><div class="news-date">Ongoing</div></div>
     </div>
-    <div class="ep-grid">
-      <div class="ep-card"><div class="ep-role-badge">Command</div><h4>Incident Command Center</h4><p>Coordinate overall neighborhood response during an emergency event.</p></div>
-      <div class="ep-card"><div class="ep-role-badge">Medical</div><h4>Medical Triage</h4><p>Assess and categorize victims: Black, Red, Yellow, and Green priority levels.</p></div>
-      <div class="ep-card"><div class="ep-role-badge">Security</div><h4>Security Team</h4><p>Allow emergency services access and prevent unauthorized entry to discourage looting.</p></div>
-      <div class="ep-card"><div class="ep-role-badge">Planning</div><h4>Planning Section</h4><p>Develop situational awareness and resource tracking during an incident.</p></div>
-      <div class="ep-card"><div class="ep-role-badge">Logistics</div><h4>Logistics Section</h4><p>Manage supplies, equipment, and resource distribution during response operations.</p></div>
-      <div class="ep-card"><div class="ep-role-badge">Finance</div><h4>Finance &amp; Administration</h4><p>Track expenditures and manage administrative records during and after an emergency.</p></div>
-    </div>
-    <div style="background:var(--forest-light);border-radius:12px;padding:2rem;margin-top:2rem;border:1px solid var(--border);">
-      <h4 style="font-family:'Playfair Display',serif;color:var(--forest);font-size:1.15rem;margin-bottom:0.5rem;">🙋 Ready to Volunteer?</h4>
-      <p style="color:var(--stone);font-size:0.9rem;">Contact the Board to express your interest. Once you identify the area you'd like to help in, the Emergency Committee will provide the training manuals you need.</p>
+    <div style="background:var(--forest);border-radius:16px;padding:2.5rem;color:#fff;">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1.3rem;margin-bottom:0.75rem;">📣 Have an Event to Add?</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;margin-bottom:0;">Contact the HOA Board to post a neighborhood event to this calendar. We welcome community-organized gatherings of all kinds.</p>
     </div>
   </div>
 </div>
@@ -583,6 +576,24 @@
           <li class="doc-item"><div class="doc-item-left"><span class="doc-icon">📄</span><div><div class="doc-name">Special MTG 2014.06.18</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/Special%20MTG%202014.06.18.pdf" target="_blank" download>↓ PDF</a></li>
         </ul>
       </div>
+
+      <!-- LIBRARY OF THINGS -->
+      <div class="doc-category">
+        <h3>🔧 Library of Things</h3>
+        <p style="color:var(--stone);font-size:0.9rem;margin-bottom:1.25rem;">Neighbors sharing tools, equipment, and household items. Post something to lend or give away — or browse what's available.</p>
+        <div id="lot-list" style="margin-bottom:1.5rem;"></div>
+        <div style="background:var(--forest-light);border:1px solid var(--border);border-radius:12px;padding:1.75rem;">
+          <h4 style="font-family:'Playfair Display',serif;color:var(--forest);font-size:1.1rem;margin-bottom:1.25rem;">Post an Item</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+            <div class="form-group" style="margin:0;"><label>Your Name</label><input type="text" id="lot-name" placeholder="e.g. Jane S." style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid rgba(44,74,62,0.2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;"/></div>
+            <div class="form-group" style="margin:0;"><label>Type</label><select id="lot-type" style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid rgba(44,74,62,0.2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:#fff;outline:none;"><option value="borrow">Available to Borrow</option><option value="giveaway">Free / Give Away</option></select></div>
+          </div>
+          <div class="form-group" style="margin-bottom:1rem;"><label>Item &amp; Description</label><input type="text" id="lot-item" placeholder="e.g. Pressure washer — works great, fits standard hose" style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid rgba(44,74,62,0.2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;"/></div>
+          <div class="form-group" style="margin-bottom:1.25rem;"><label>Contact (how neighbors can reach you)</label><input type="text" id="lot-contact" placeholder="e.g. Leave note at mailbox, or 310-555-xxxx" style="width:100%;padding:0.65rem 0.9rem;border:1.5px solid rgba(44,74,62,0.2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;"/></div>
+          <button class="btn-primary" style="width:auto;padding:0.75rem 2rem;" onclick="postLotItem()">Post Item</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -619,7 +630,7 @@
     document.getElementById("nav-links").classList.remove("open");
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (id === "documents") {
-      if (isLoggedIn) { document.getElementById("login-view").style.display = "none"; document.getElementById("docs-view").style.display = "block"; }
+      if (isLoggedIn) { document.getElementById("login-view").style.display = "none"; document.getElementById("docs-view").style.display = "block"; renderLotItems(); }
       else { document.getElementById("login-view").style.display = "block"; document.getElementById("docs-view").style.display = "none"; }
     }
   }
@@ -632,6 +643,7 @@
       isLoggedIn = true; err.style.display = "none";
       document.getElementById("login-view").style.display = "none";
       document.getElementById("docs-view").style.display = "block";
+      renderLotItems();
     } else { err.style.display = "block"; document.getElementById("login-pass").value = ""; }
   }
 
@@ -642,6 +654,48 @@
     document.getElementById("login-error").style.display = "none";
     document.getElementById("docs-view").style.display = "none";
     document.getElementById("login-view").style.display = "block";
+  }
+
+  const lotItems = [
+    { name: "Bob T.", type: "borrow", item: "Extension ladder (24 ft)", contact: "Leave note at mailbox" },
+    { name: "Carol M.", type: "giveaway", item: "Box of garden pots — various sizes", contact: "Leave at end of driveway, free to take" },
+    { name: "David L.", type: "borrow", item: "Carpet cleaner / shampooer", contact: "Call or text 310-555-0182" },
+  ];
+
+  function renderLotItems() {
+    const el = document.getElementById("lot-list");
+    if (!el) return;
+    if (lotItems.length === 0) {
+      el.innerHTML = '<p style="color:var(--stone);font-size:0.9rem;font-style:italic;">No items posted yet — be the first!</p>';
+      return;
+    }
+    el.innerHTML = lotItems.map((it, i) => `
+      <div style="background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+        <div>
+          <span style="display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:4px;margin-bottom:0.5rem;${it.type==='giveaway'?'background:#D1FAE5;color:#065F46;':'background:#DBEAFE;color:#1E40AF;'}">${it.type==='giveaway'?'Free / Give Away':'Borrow'}</span>
+          <div style="font-weight:600;color:var(--charcoal);font-size:0.95rem;">${it.item}</div>
+          <div style="font-size:0.82rem;color:var(--stone);margin-top:0.25rem;">Posted by ${it.name} · ${it.contact}</div>
+        </div>
+        <button onclick="removeLotItem(${i})" style="background:none;border:none;color:var(--stone);cursor:pointer;font-size:1.1rem;flex-shrink:0;padding:0.25rem;" title="Remove">✕</button>
+      </div>`).join("");
+  }
+
+  function postLotItem() {
+    const name = document.getElementById("lot-name").value.trim();
+    const type = document.getElementById("lot-type").value;
+    const item = document.getElementById("lot-item").value.trim();
+    const contact = document.getElementById("lot-contact").value.trim();
+    if (!name || !item || !contact) { alert("Please fill in your name, item description, and contact info."); return; }
+    lotItems.unshift({ name, type, item, contact });
+    document.getElementById("lot-name").value = "";
+    document.getElementById("lot-item").value = "";
+    document.getElementById("lot-contact").value = "";
+    renderLotItems();
+  }
+
+  function removeLotItem(i) {
+    lotItems.splice(i, 1);
+    renderLotItems();
   }
 
   function openPhoto(src) {
