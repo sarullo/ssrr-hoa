@@ -539,11 +539,9 @@
     <div class="login-wrapper">
       <div class="login-card">
         <div class="login-logo"><div class="crest">🏔</div><h2>Member Login</h2><p>Sunnyside Ridge Road HOA</p></div>
-        <div id="login-error" class="login-error">Incorrect username or password. Please try again.</div>
-        <div class="form-group"><label for="login-user">Username</label><input type="text" id="login-user" placeholder="Enter your username" autocomplete="username"/></div>
-        <div class="form-group"><label for="login-pass">Password</label><input type="password" id="login-pass" placeholder="Enter your password" autocomplete="current-password" onkeydown="if(event.key==='Enter') attemptLogin()"/></div>
+        <div id="login-error" class="login-error">Incorrect password. Please try again.</div>
+        <div class="form-group"><label for="login-pass">Member Password</label><input type="password" id="login-pass" placeholder="Enter member password" autocomplete="current-password" onkeydown="if(event.key==='Enter') attemptLogin()"/></div>
         <button class="btn-primary" onclick="attemptLogin()">Sign In to Member Area</button>
-        <div class="login-hint"><strong>Demo credentials:</strong> username <code>ssrrmember</code> / password <code>ridge2024</code></div>
       </div>
     </div>
   </div>
@@ -779,7 +777,6 @@
     }).join("");
   }
 
-  const VALID_USER = "ssrrmember", VALID_PASS = "ridge2024";
   let isLoggedIn = false;
 
   function switchMemberTab(tabId, btn) {
@@ -811,15 +808,29 @@
     }
   }
 
-  function attemptLogin() {
-    const user = document.getElementById("login-user").value.trim();
+  async function attemptLogin() {
     const pass = document.getElementById("login-pass").value;
     const err = document.getElementById("login-error");
-    if (user === VALID_USER && pass === VALID_PASS) {
-      isLoggedIn = true; err.style.display = "none";
-      document.getElementById("login-view").style.display = "none";
-      document.getElementById("docs-view").style.display = "block";
-    } else { err.style.display = "block"; document.getElementById("login-pass").value = ""; }
+    const btn = document.querySelector(".btn-primary");
+    btn.textContent = "Signing in…"; btn.disabled = true;
+    try {
+      const res = await fetch("/.netlify/functions/login", {
+        method: "POST",
+        body: JSON.stringify({ password: pass }),
+      });
+      if (res.ok) {
+        isLoggedIn = true; err.style.display = "none";
+        document.getElementById("login-view").style.display = "none";
+        document.getElementById("docs-view").style.display = "block";
+      } else {
+        err.style.display = "block";
+        document.getElementById("login-pass").value = "";
+      }
+    } catch (e) {
+      err.textContent = "Connection error — please try again.";
+      err.style.display = "block";
+    }
+    btn.textContent = "Sign In to Member Area"; btn.disabled = false;
   }
 
   function logout() {
