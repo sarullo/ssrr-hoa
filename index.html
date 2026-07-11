@@ -240,7 +240,7 @@
     <div class="card-grid">
       <div class="card"><div class="card-icon">🏡</div><h3>Neighborhood Upkeep</h3><p>We maintain the entrance, common areas, and landscaping to keep Sunnyside Ridge Road looking its best year-round.</p><a class="card-link" onclick="showPage('about')">Learn more →</a></div>
       <div class="card"><div class="card-icon">🎉</div><h3>Social Calendar</h3><p>Stay connected with neighborhood events, block parties, community gatherings, and seasonal celebrations planned throughout the year.</p><a class="card-link" onclick="showPage('calendar')">View calendar →</a></div>
-      <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety Watch</h3><p>We share crime reports from the Lomita Sheriff's Department and coordinate with Block Captains to keep residents informed.</p><a class="card-link" onclick="showPage('crime')">Stay informed →</a></div>
+      <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety Watch</h3><p>We share local crime reports and coordinate with Block Captains through our Neighborhood Watch to keep residents informed.</p><a class="card-link" onclick="showPage('crime')">Stay informed →</a></div>
       <div class="card"><div class="card-icon">📷</div><h3>Historic Photos</h3><p>Browse our collection of historic Palos Verdes photographs, preserving the visual heritage of our community for generations.</p><a class="card-link" onclick="showPage('photos')">View gallery →</a></div>
     </div>
   </div>
@@ -289,8 +289,8 @@
         </div>
         <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1.5rem;">
           <h4 style="font-family:'Playfair Display',serif;color:var(--forest);margin-bottom:0.5rem;">🔧 Contractor Referral List</h4>
-          <p style="font-size:0.88rem;color:var(--stone);">The HOA maintains a community-sourced list of trusted contractors. Log in to access the referral database.</p>
-          <a class="card-link" onclick="showPage('documents')" style="margin-top:0.75rem;display:inline-flex;">Access contractor list →</a>
+          <p style="font-size:0.88rem;color:var(--stone);">The HOA maintains a community-sourced list of trusted contractors recommended by your neighbors — free and open to all residents.</p>
+          <a class="card-link" href="pdf/Contractor%20Referral%20List.pdf" target="_blank" style="margin-top:0.75rem;display:inline-flex;">View contractor list (PDF) →</a>
         </div>
       </div>
     </div>
@@ -299,14 +299,14 @@
 
 <!-- NEWS -->
 <div id="page-news" class="page">
-  <div class="page-hero"><p class="page-hero-eyebrow">What's Happening</p><h1>Community News &amp; Updates</h1><p>Stay informed on HOA announcements and neighborhood happenings</p></div>
+  <div class="page-hero"><p class="page-hero-eyebrow">What's Happening</p><h1>News &amp; Announcements</h1><p>Stay informed on HOA announcements and neighborhood happenings</p></div>
   <div class="section">
     <div class="news-grid">
-      <div class="news-card"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft &amp; Identity Protection</h3><p>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Protect yourself by investing in a locking mailbox or stopping your mail at USPS.com when on vacation.</p><div class="news-date">Community Notice</div></div>
-      <div class="news-card"><span class="news-tag tag-safety">Fire Safety</span><h3>Welcome Summer — Brush Clearing Required</h3><p>Stay cool this summer, and keep brush clear. High fire season is expected. Please ensure all dry brush and vegetation is cleared from around your home and property lines.</p><div class="news-date">Seasonal Reminder</div></div>
-      <div class="news-card"><span class="news-tag tag-community">Meeting</span><h3>Meeting Minutes Now Online</h3><p>Minutes of all HOA board meetings going back to 2002 are now posted in the Members Documents area. All files are in PDF format. Log in to access.</p><div class="news-date">Board Update</div></div>
-      <div class="news-card"><span class="news-tag tag-alert">Crime</span><h3>Lomita Sheriff Crime Reports Available</h3><p>The HOA posts all crime information in our area as published by the Lomita Sheriff's Department. Check the Crime Reports page often so you are aware of recent crime in the area.</p><div class="news-date">Board Announcement</div></div>
-      <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Septic Tank Maintenance Resources</h3><p>A comprehensive Septic Tank Owner's Manual is available to all members in the documents section. Proper maintenance protects your home investment and the environment.</p><div class="news-date">Resident Resource</div></div>
+      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft &amp; Identity Protection</h3><p>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Protect yourself by investing in a locking mailbox or stopping your mail at USPS.com when on vacation.</p><div class="news-date">Community Notice</div></div>
+      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-safety">Fire Safety</span><h3>Welcome Summer — Brush Clearing Required</h3><p>Stay cool this summer, and keep brush clear. High fire season is expected. Please ensure all dry brush and vegetation is cleared from around your home and property lines.</p><div class="news-date">Seasonal Reminder</div></div>
+      <div class="news-card" onclick="showPage('documents')"><span class="news-tag tag-community">Meeting</span><h3>Meeting Minutes Now Online</h3><p>Minutes of all HOA board meetings going back to 2002 are now posted in the Members Documents area. All files are in PDF format. Log in to access.</p><div class="news-date">Board Update</div></div>
+      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Crime</span><h3>Crime Reports &amp; Neighborhood Watch</h3><p>The HOA shares crime information for our area and coordinates with Block Captains. Check the Crime &amp; Safety page often so you are aware of recent activity in the neighborhood.</p><div class="news-date">Board Announcement</div></div>
+      <div class="news-card" onclick="showPage('documents')"><span class="news-tag tag-maintenance">Maintenance</span><h3>Septic Tank Maintenance Resources</h3><p>A comprehensive Septic Tank Owner's Manual is available to all members in the documents section. Proper maintenance protects your home investment and the environment.</p><div class="news-date">Resident Resource</div></div>
       <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery — 156 Images</h3><p>Browse our full collection of historic Palos Verdes photographs now available in the gallery section. A fascinating look at our neighborhood's past.</p><div class="news-date">New Feature</div></div>
     </div>
   </div>
@@ -336,15 +336,6 @@
         <div id="cal-detail-content"></div>
       </div>
     </div>
-    <!-- Upcoming list -->
-    <div style="margin-top:3rem;">
-      <div class="section-header" style="text-align:left;margin-bottom:1.5rem;">
-        <p class="section-eyebrow">Coming Up</p>
-        <h2 class="section-title" style="font-size:1.6rem;">Upcoming Events</h2>
-        <div class="gold-rule" style="margin:0.75rem 0 0;"></div>
-      </div>
-      <div id="cal-upcoming"></div>
-    </div>
     <div style="background:var(--forest);border-radius:16px;padding:2rem 2.5rem;color:#fff;margin-top:2.5rem;">
       <h3 style="font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1.1rem;margin-bottom:0.4rem;">📣 Want to add an event?</h3>
       <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;margin:0;">Contact the HOA Board and we'll get it on the calendar.</p>
@@ -357,12 +348,10 @@
   <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Crime Reports &amp; Neighborhood Watch</h1><p>Stay informed, stay safe, share with your neighbors</p></div>
   <div class="section">
     <div class="alert-box"><strong>⚠️ Recent Alert: Mail Theft</strong>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Invest in a locking mailbox or use USPS Hold Mail when traveling.</div>
-    <div class="crime-info"><h3>🚔 Lomita Sheriff's Department</h3><p>The HOA posts all crime information in our area as published by the Lomita Sheriff's Department. Check regularly to stay aware of recent crime activity.</p><p style="margin-top:0.75rem;">You can also listen to a <strong>South Bay Police live audio feed</strong> in real time for up-to-the-minute public safety information.</p></div>
     <div class="crime-info"><h3>👁 What is Neighborhood Watch?</h3><p>As a member of an organized Neighborhood Watch, our street is part of a citywide crime prevention network connecting Neighborhood Watch, the Sheriff's Department, and Block Captains.</p><p style="margin-top:0.75rem;"><strong>How it works:</strong></p><ul style="margin-top:0.5rem;"><li>Crime warnings are emailed to Block Captains</li><li>Block Captains disseminate alerts to Block Assistants</li><li>Alerts are shared with all participating Neighborhood Watch residents</li></ul></div>
     <div class="card-grid">
       <div class="card"><div class="card-icon">📬</div><h3>Stop Your Mail</h3><p>Prevent mail theft when you're on vacation. Put your USPS mail on hold online — it takes just a few minutes.</p><a class="card-link" href="https://holdmail.usps.com/holdmail/" target="_blank">Hold mail at USPS.com →</a></div>
       <div class="card"><div class="card-icon">🔒</div><h3>Locking Mailboxes</h3><p>Consider upgrading to a locking mailbox to protect against the growing threat of mail theft and identity fraud in the area.</p></div>
-      <div class="card"><div class="card-icon">📻</div><h3>Live Police Audio</h3><p>Listen to South Bay Police and Fire Department live audio feeds to stay informed about local incidents in real time.</p><a class="card-link" href="https://www.broadcastify.com/listen/ctid/396" target="_blank">Listen live →</a></div>
     </div>
   </div>
 </div>
@@ -730,7 +719,6 @@
     }
 
     document.getElementById("cal-grid").innerHTML = html;
-    renderUpcoming();
   }
 
   function showEventDetail(y, m, d, idx) {
@@ -750,31 +738,6 @@
 
   function closeEventDetail() {
     document.getElementById("cal-event-detail").style.display = "none";
-  }
-
-  function renderUpcoming() {
-    const now = new Date(); now.setHours(0,0,0,0);
-    const upcoming = CALENDAR_EVENTS
-      .filter(e => new Date(e.date + "T12:00:00") >= now)
-      .sort((a,b) => a.date.localeCompare(b.date))
-      .slice(0, 5);
-    if (!upcoming.length) {
-      document.getElementById("cal-upcoming").innerHTML = `<p style="color:var(--stone);font-style:italic;">No upcoming events scheduled.</p>`;
-      return;
-    }
-    document.getElementById("cal-upcoming").innerHTML = upcoming.map(e => {
-      const dt = new Date(e.date + "T12:00:00");
-      const mon = dt.toLocaleDateString("en-US", { month:"short" }).toUpperCase();
-      const day = dt.getDate();
-      return `<div class="cal-upcoming-item">
-        <div class="cal-upcoming-date"><div class="cal-up-month">${mon}</div><div class="cal-up-day">${day}</div></div>
-        <div class="cal-upcoming-info">
-          ${e.time ? `<div class="cal-up-time">${e.time}</div>` : ""}
-          <h4>${e.title}</h4>
-          <p>${e.description}</p>
-        </div>
-      </div>`;
-    }).join("");
   }
 
   let isLoggedIn = false;
