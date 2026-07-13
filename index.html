@@ -76,8 +76,7 @@
   .membership-info strong { color: #fff; display: block; font-size: 1rem; margin-bottom: 2px; }
   .news-bg { background: var(--forest-light); }
   .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
-  .news-card { background: var(--warm-white); border-radius: 12px; padding: 1.75rem; border: 1px solid var(--border); cursor: pointer; transition: transform 0.2s; }
-  .news-card:hover { transform: translateY(-2px); }
+  .news-card { background: var(--warm-white); border-radius: 12px; padding: 1.75rem; border: 1px solid var(--border); }
   .news-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
   .tag-safety { background: #FEF3C7; color: #92400E; } .tag-community { background: #D1FAE5; color: #065F46; }
   .tag-maintenance { background: #DBEAFE; color: #1E40AF; } .tag-alert { background: #FEE2E2; color: #991B1B; }
@@ -208,7 +207,6 @@
     <ul class="nav-links" id="nav-links">
       <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
       <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-      <li><a onclick="showPage('news')" id="nav-news">News</a></li>
       <li><a onclick="showPage('calendar')" id="nav-calendar">Social Calendar</a></li>
       <li><a onclick="showPage('crime')" id="nav-crime">Crime &amp; Safety</a></li>
       <li><a onclick="showPage('photos')" id="nav-photos">Historic Photos</a></li>
@@ -238,20 +236,21 @@
       <div class="gold-rule"></div>
     </div>
     <div class="card-grid">
-      <div class="card"><div class="card-icon">🏡</div><h3>Neighborhood Upkeep</h3><p>We maintain the entrance, common areas, and landscaping to keep Sunnyside Ridge Road looking its best year-round.</p><a class="card-link" onclick="showPage('about')">Learn more →</a></div>
-      <div class="card"><div class="card-icon">🎉</div><h3>Social Calendar</h3><p>Stay connected with neighborhood events, block parties, community gatherings, and seasonal celebrations planned throughout the year.</p><a class="card-link" onclick="showPage('calendar')">View calendar →</a></div>
-      <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety Watch</h3><p>We share local crime reports and coordinate with Block Captains through our Neighborhood Watch to keep residents informed.</p><a class="card-link" onclick="showPage('crime')">Stay informed →</a></div>
-      <div class="card"><div class="card-icon">📷</div><h3>Historic Photos</h3><p>Browse our collection of historic Palos Verdes photographs, preserving the visual heritage of our community for generations.</p><a class="card-link" onclick="showPage('photos')">View gallery →</a></div>
+      <div class="card"><div class="card-icon">🏡</div><h3>Neighborhood Upkeep</h3><p>We maintain the entrance, common areas, and landscaping to keep Sunnyside Ridge Road looking its best year-round.</p></div>
+      <div class="card"><div class="card-icon">🎉</div><h3>Community Events</h3><p>Stay connected with neighborhood events, block parties, community gatherings, and seasonal celebrations planned throughout the year.</p></div>
+      <div class="card"><div class="card-icon">🔐</div><h3>Crime &amp; Safety</h3><p>We share local crime reports and coordinate with Block Captains through our Neighborhood Watch to keep residents informed.</p></div>
+      <div class="card"><div class="card-icon">📷</div><h3>Historic Photos</h3><p>Browse our collection of historic Palos Verdes photographs, preserving the visual heritage of our community for generations.</p></div>
     </div>
   </div>
   <div class="section-divider"></div>
   <div class="section">
     <div class="section-header"><p class="section-eyebrow">Quick Access</p><h2 class="section-title">Resident Resources</h2><div class="gold-rule"></div></div>
     <div class="quick-links">
-      <div class="quick-link" onclick="showPage('documents')"><div class="ql-icon">📄</div><div class="ql-title">HOA Documents</div><div class="ql-sub">Members only</div></div>
-      <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon">📷</div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
+      <div class="quick-link" onclick="showPage('documents')"><div class="ql-icon">📄</div><div class="ql-title">Member Documents</div><div class="ql-sub">Members only</div></div>
       <div class="quick-link" onclick="showPage('calendar')"><div class="ql-icon">🎉</div><div class="ql-title">Social Calendar</div><div class="ql-sub">Events &amp; gatherings</div></div>
-      <div class="quick-link" onclick="showPage('crime')"><div class="ql-icon">🚔</div><div class="ql-title">Crime Reports</div><div class="ql-sub">Sheriff updates</div></div>
+      <div class="quick-link" onclick="showPage('crime')"><div class="ql-icon">🚔</div><div class="ql-title">Crime &amp; Safety</div><div class="ql-sub">Reports &amp; watch</div></div>
+      <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon">📷</div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
+      <div class="quick-link" onclick="window.open('pdf/Contractor%20Referral%20List.pdf','_blank')"><div class="ql-icon">🔧</div><div class="ql-title">Contractor List</div><div class="ql-sub">Trusted referrals</div></div>
       <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon">📬</div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
     </div>
   </div>
@@ -259,10 +258,10 @@
     <div class="section">
       <div class="section-header"><p class="section-eyebrow">Community Board</p><h2 class="section-title">Latest Updates</h2><div class="gold-rule"></div></div>
       <div class="news-grid">
-        <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft on the Rise</h3><p>Several residents have reported mail theft leading to fraudulent charges. Invest in a locking mailbox or use USPS hold service when traveling.</p><div class="news-date">Community Notice</div></div>
-        <div class="news-card" onclick="showPage('calendar')"><span class="news-tag tag-community">Social Calendar</span><h3>Summer Block Party — Save the Date</h3><p>Join your neighbors for the annual SSRR summer block party. Food, fun, and community on Sunnyside Ridge Road. Details posted in the calendar.</p><div class="news-date">Community Event</div></div>
-        <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Fire Season Reminder: Clear Your Brush</h3><p>With high fire season expected, please ensure all brush and dry vegetation is cleared from around your property. Stay safe this season.</p><div class="news-date">Seasonal Reminder</div></div>
-        <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery Now Online</h3><p>Browse our full collection of 156 historic Palos Verdes photographs, capturing the neighborhood's rich history since before 1955.</p><div class="news-date">New Feature</div></div>
+        <div class="news-card"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft on the Rise</h3><p>Several residents have reported mail theft leading to fraudulent charges. Invest in a locking mailbox or use USPS hold service when traveling.</p><div class="news-date">Posted Jul 2026</div></div>
+        <div class="news-card"><span class="news-tag tag-community">Community Event</span><h3>Summer Block Party — Save the Date</h3><p>Join your neighbors for the annual SSRR summer block party on July 18. Food, fun, and community on Sunnyside Ridge Road — see the Social Calendar for details.</p><div class="news-date">Posted Jul 2026</div></div>
+        <div class="news-card"><span class="news-tag tag-maintenance">Maintenance</span><h3>Fire Season Reminder: Clear Your Brush</h3><p>With high fire season expected, please ensure all brush and dry vegetation is cleared from around your property. Stay safe this season.</p><div class="news-date">Posted Jun 2026</div></div>
+        <div class="news-card"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery Now Online</h3><p>Browse our full collection of 156 historic Palos Verdes photographs, capturing the neighborhood's rich history since before 1955.</p><div class="news-date">Posted May 2026</div></div>
       </div>
     </div>
   </div>
@@ -287,27 +286,7 @@
           <div class="membership-item"><div class="membership-badge">80/yr</div><div class="membership-info"><strong>Social Membership</strong>Extended to nearby residents who wish to participate in meetings and activities.</div></div>
           <div class="membership-item"><div class="membership-badge" style="background:rgba(255,255,255,0.15);color:#fff;">Streets</div><div class="membership-info"><strong>Sunnyside Ridge Road</strong>Sol Vista · Palos Verdes Drive East</div></div>
         </div>
-        <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:1.5rem;">
-          <h4 style="font-family:'Playfair Display',serif;color:var(--forest);margin-bottom:0.5rem;">🔧 Contractor Referral List</h4>
-          <p style="font-size:0.88rem;color:var(--stone);">The HOA maintains a community-sourced list of trusted contractors recommended by your neighbors — free and open to all residents.</p>
-          <a class="card-link" href="pdf/Contractor%20Referral%20List.pdf" target="_blank" style="margin-top:0.75rem;display:inline-flex;">View contractor list (PDF) →</a>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- NEWS -->
-<div id="page-news" class="page">
-  <div class="page-hero"><p class="page-hero-eyebrow">What's Happening</p><h1>News &amp; Announcements</h1><p>Stay informed on HOA announcements and neighborhood happenings</p></div>
-  <div class="section">
-    <div class="news-grid">
-      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Safety Alert</span><h3>Mail Theft &amp; Identity Protection</h3><p>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Protect yourself by investing in a locking mailbox or stopping your mail at USPS.com when on vacation.</p><div class="news-date">Community Notice</div></div>
-      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-safety">Fire Safety</span><h3>Welcome Summer — Brush Clearing Required</h3><p>Stay cool this summer, and keep brush clear. High fire season is expected. Please ensure all dry brush and vegetation is cleared from around your home and property lines.</p><div class="news-date">Seasonal Reminder</div></div>
-      <div class="news-card" onclick="showPage('documents')"><span class="news-tag tag-community">Meeting</span><h3>Meeting Minutes Now Online</h3><p>Minutes of all HOA board meetings going back to 2002 are now posted in the Members Documents area. All files are in PDF format. Log in to access.</p><div class="news-date">Board Update</div></div>
-      <div class="news-card" onclick="showPage('crime')"><span class="news-tag tag-alert">Crime</span><h3>Crime Reports &amp; Neighborhood Watch</h3><p>The HOA shares crime information for our area and coordinates with Block Captains. Check the Crime &amp; Safety page often so you are aware of recent activity in the neighborhood.</p><div class="news-date">Board Announcement</div></div>
-      <div class="news-card" onclick="showPage('documents')"><span class="news-tag tag-maintenance">Maintenance</span><h3>Septic Tank Maintenance Resources</h3><p>A comprehensive Septic Tank Owner's Manual is available to all members in the documents section. Proper maintenance protects your home investment and the environment.</p><div class="news-date">Resident Resource</div></div>
-      <div class="news-card" onclick="showPage('photos')"><span class="news-tag tag-community">Community</span><h3>Historic Photo Gallery — 156 Images</h3><p>Browse our full collection of historic Palos Verdes photographs now available in the gallery section. A fascinating look at our neighborhood's past.</p><div class="news-date">New Feature</div></div>
     </div>
   </div>
 </div>
@@ -345,12 +324,12 @@
 
 <!-- CRIME -->
 <div id="page-crime" class="page">
-  <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Crime Reports &amp; Neighborhood Watch</h1><p>Stay informed, stay safe, share with your neighbors</p></div>
+  <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Crime &amp; Safety</h1><p>Stay informed, stay safe, share with your neighbors</p></div>
   <div class="section">
     <div class="alert-box"><strong>⚠️ Recent Alert: Mail Theft</strong>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Invest in a locking mailbox or use USPS Hold Mail when traveling.</div>
     <div class="crime-info"><h3>👁 What is Neighborhood Watch?</h3><p>As a member of an organized Neighborhood Watch, our street is part of a citywide crime prevention network connecting Neighborhood Watch, the Sheriff's Department, and Block Captains.</p><p style="margin-top:0.75rem;"><strong>How it works:</strong></p><ul style="margin-top:0.5rem;"><li>Crime warnings are emailed to Block Captains</li><li>Block Captains disseminate alerts to Block Assistants</li><li>Alerts are shared with all participating Neighborhood Watch residents</li></ul></div>
     <div class="card-grid">
-      <div class="card"><div class="card-icon">📬</div><h3>Stop Your Mail</h3><p>Prevent mail theft when you're on vacation. Put your USPS mail on hold online — it takes just a few minutes.</p><a class="card-link" href="https://holdmail.usps.com/holdmail/" target="_blank">Hold mail at USPS.com →</a></div>
+      <div class="card"><div class="card-icon">📬</div><h3>Hold Your Mail</h3><p>Prevent mail theft when you're on vacation. Put your USPS mail on hold online — it takes just a few minutes.</p><a class="card-link" href="https://holdmail.usps.com/holdmail/" target="_blank">Hold mail at USPS.com →</a></div>
       <div class="card"><div class="card-icon">🔒</div><h3>Locking Mailboxes</h3><p>Consider upgrading to a locking mailbox to protect against the growing threat of mail theft and identity fraud in the area.</p></div>
     </div>
   </div>
@@ -524,7 +503,7 @@
 <!-- DOCUMENTS (Login Gate) -->
 <div id="page-documents" class="page">
   <div id="login-view">
-    <div class="page-hero"><p class="page-hero-eyebrow">Members Only</p><h1>HOA Documents</h1><p>Please log in with your member credentials to access documents</p></div>
+    <div class="page-hero"><p class="page-hero-eyebrow">Members Only</p><h1>Member Documents</h1><p>Please log in with your member credentials to access documents</p></div>
     <div class="login-wrapper">
       <div class="login-card">
         <div class="login-logo"><div class="crest">🏔</div><h2>Member Login</h2><p>Sunnyside Ridge Road HOA</p></div>
@@ -642,7 +621,7 @@
   <div class="footer-name">Sunnyside Ridge Road Homeowners Association</div>
   <div style="margin-top:0.25rem;margin-bottom:1rem;font-style:italic;color:rgba(255,255,255,0.4);">Live in the Clouds…</div>
   <div>Sunnyside Ridge Rd · Sol Vista · Palos Verdes Drive East · Rancho Palos Verdes, CA</div>
-  <div style="margin-top:0.75rem;">Est. 1955 · <a onclick="showPage('documents')">Member Login</a></div>
+  <div style="margin-top:0.75rem;">Est. 1955 · <a onclick="showPage('documents')">Member Documents</a></div>
 </footer>
 
 <script>
