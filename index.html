@@ -221,9 +221,9 @@
   .board-contact a:hover { text-decoration: underline; }
   /* SEARCH */
   .search-wrap { max-width: 560px; margin: 0 auto; position: relative; }
-  .search-box { display: flex; align-items: center; gap: 0.65rem; background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.85rem 1.1rem; transition: border-color 0.2s, box-shadow 0.2s; }
-  .search-box:focus-within { border-color: var(--forest); box-shadow: 0 4px 20px rgba(44,74,62,0.08); }
-  .search-box .icon { width: 20px; height: 20px; color: var(--stone); flex-shrink: 0; }
+  .search-box { display: flex; align-items: center; gap: 0.65rem; background: #fff; border: 2px solid var(--forest-mid); border-radius: 12px; padding: 0.9rem 1.15rem; box-shadow: 0 6px 22px rgba(44,74,62,0.12); transition: border-color 0.2s, box-shadow 0.2s; }
+  .search-box:focus-within { border-color: var(--forest); box-shadow: 0 6px 26px rgba(44,74,62,0.20); }
+  .search-box .icon { width: 20px; height: 20px; color: var(--forest); flex-shrink: 0; }
   .search-box input { flex: 1; border: none; outline: none; background: none; font-family: "DM Sans", sans-serif; font-size: 0.95rem; color: var(--charcoal); }
   .search-results { position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 30px rgba(44,74,62,0.12); overflow: hidden; z-index: 50; display: none; }
   .search-results.open { display: block; }
@@ -233,6 +233,17 @@
   .search-result .sr-label { font-weight: 600; font-size: 0.9rem; color: var(--forest); }
   .search-result .sr-sub { font-size: 0.76rem; color: var(--stone); }
   .search-empty { padding: 0.9rem 1.1rem; font-size: 0.85rem; color: var(--stone); }
+  /* CONTACT FORM */
+  .contact-block { margin-top: 2.5rem; }
+  .contact-title { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--forest); margin-bottom: 0.4rem; }
+  .contact-intro { color: var(--stone); font-size: 0.92rem; margin-bottom: 1.5rem; max-width: 640px; }
+  .contact-form { max-width: 640px; }
+  .contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .contact-form .form-row { grid-template-columns: 1fr; } }
+  .contact-form textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid rgba(44,74,62,0.2); border-radius: 8px; font-family: "DM Sans", sans-serif; font-size: 0.95rem; color: var(--charcoal); background: #fff; outline: none; resize: vertical; transition: border-color 0.2s; }
+  .contact-form textarea:focus { border-color: var(--forest); }
+  .contact-form [data-netlify-recaptcha] { margin-top: 1.25rem; }
+  .hp-field { display: none; }
 </style>
 </head>
 <body>
@@ -285,6 +296,12 @@
     </div>
   </div>
   <div class="section" style="padding-bottom:0;">
+    <div class="section-header" style="margin-bottom:1.25rem;">
+      <p class="section-eyebrow">Find What You Need</p>
+      <h2 class="section-title" style="font-size:1.7rem;">Search the Site</h2>
+      <p class="section-subtitle">Documents, events, photos, and pages — all in one place.</p>
+      <div class="gold-rule"></div>
+    </div>
     <div class="search-wrap">
       <div class="search-box">
         <svg class="icon"><use href="#i-search"></use></svg>
@@ -363,16 +380,34 @@
       <div class="gold-rule"></div>
     </div>
     <div class="board-grid">
-      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">President</div><div class="board-name">To be announced</div></div></div>
-      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Vice President</div><div class="board-name">To be announced</div></div></div>
-      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Treasurer</div><div class="board-name">To be announced</div></div></div>
-      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Secretary</div><div class="board-name">To be announced</div></div></div>
-      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Webmaster</div><div class="board-name">To be announced</div></div></div>
-      <div class="board-card"><svg class="icon"><use href="#i-users"></use></svg><div><div class="board-role">Members at Large</div><div class="board-name">To be announced</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">President</div><div class="board-name">Rainer Otto</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Social Chair / Co-Secretary</div><div class="board-name">Renee Groskreutz</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Secretary</div><div class="board-name">Valeri Cardello</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Treasurer</div><div class="board-name">RJ Cardello</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Webmaster</div><div class="board-name">Mike Sarullo</div></div></div>
+      <div class="board-card"><svg class="icon"><use href="#i-users"></use></svg><div><div class="board-role">Members at Large</div><div class="board-name">Alyssa Stellner<br>Mark Stellner<br>Rosa Koretzky</div></div></div>
     </div>
     <div class="board-contact">
       <svg class="icon"><use href="#i-mail"></use></svg>
-      <div><div class="board-role" style="color:var(--gold-light);">Contact the Board</div><a href="mailto:board@sunnysideridge.org">board@sunnysideridge.org</a></div>
+      <div><div class="board-role" style="color:var(--gold-light);">Contact the Board</div><a href="mailto:sunnysidecommunityassociation@gmail.com">sunnysidecommunityassociation@gmail.com</a></div>
+    </div>
+
+    <!-- CONTACT FORM (Netlify Forms + honeypot + reCAPTCHA) -->
+    <div class="contact-block">
+      <h3 class="contact-title">Send the Board a Message</h3>
+      <p class="contact-intro">Questions, suggestions, or want to add an event to the calendar? Send us a note and a board member will get back to you.</p>
+      <form name="board-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true" action="/thanks.html" class="contact-form">
+        <input type="hidden" name="form-name" value="board-contact"/>
+        <p class="hp-field"><label>Leave this field empty if you're human: <input name="bot-field"/></label></p>
+        <div class="form-row">
+          <div class="form-group"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" required/></div>
+          <div class="form-group"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required/></div>
+        </div>
+        <div class="form-group"><label for="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text"/></div>
+        <div class="form-group"><label for="cf-message">Message</label><textarea id="cf-message" name="message" rows="5" required></textarea></div>
+        <div data-netlify-recaptcha="true"></div>
+        <button type="submit" class="btn-primary" style="max-width:220px;margin-top:1.25rem;">Send Message</button>
+      </form>
     </div>
   </div>
 </div>
@@ -907,6 +942,7 @@
     const idx = [
       { label: "About the HOA", sub: "History, membership & board", act: () => showPage("about") },
       { label: "Board of Directors", sub: "About · HOA leadership", act: () => showPage("about") },
+      { label: "Contact the Board", sub: "Send a message via the About page", act: () => showPage("about") },
       { label: "Social Calendar", sub: "Events & gatherings", act: () => showPage("calendar") },
       { label: "Crime & Safety", sub: "Reports & neighborhood watch", act: () => showPage("crime") },
       { label: "Historic Photos", sub: "156 Palos Verdes images", act: () => showPage("photos") },
