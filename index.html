@@ -387,7 +387,7 @@
       <div class="board-card"><svg class="icon"><use href="#i-user"></use></svg><div><div class="board-role">Webmaster</div><div class="board-name">Mike Sarullo</div></div></div>
       <div class="board-card"><svg class="icon"><use href="#i-users"></use></svg><div><div class="board-role">Members at Large</div><div class="board-name">Alyssa Stellner<br>Mark Stellner<br>Rosa Koretzky</div></div></div>
     </div>
-    <div class="board-contact">
+    <div class="board-contact" id="contact">
       <svg class="icon"><use href="#i-mail"></use></svg>
       <div><div class="board-role" style="color:var(--gold-light);">Contact the Board</div><a href="mailto:sunnysidecommunityassociation@gmail.com">sunnysidecommunityassociation@gmail.com</a></div>
     </div>
@@ -438,7 +438,7 @@
     </div>
     <div style="background:var(--forest);border-radius:16px;padding:2rem 2.5rem;color:#fff;margin-top:2.5rem;">
       <h3 style="font-family:'Playfair Display',serif;color:var(--gold-light);font-size:1.1rem;margin-bottom:0.4rem;">📣 Want to add an event?</h3>
-      <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;margin:0;">Contact the HOA Board and we'll get it on the calendar.</p>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;margin:0;"><a onclick="showPage('about','contact')" style="color:var(--gold-light);font-weight:600;text-decoration:underline;cursor:pointer;">Contact the HOA Board</a> and we'll get it on the calendar.</p>
     </div>
   </div>
 </div>
@@ -728,6 +728,7 @@
   const CALENDAR_EVENTS = [
     { date: "2026-07-04", title: "4th of July Gathering", time: "5:00 PM", description: "Celebrate Independence Day with neighbors. Bring a dish to share. Fireworks viewing from the ridge." },
     { date: "2026-07-18", title: "Summer Block Party", time: "4:00 PM – 8:00 PM", description: "Annual SSRR summer block party. Food, drinks, and fun for the whole family. Sunnyside Ridge Road cul-de-sac." },
+    { date: "2026-08-22", title: "Summer Social", time: "5:00 PM – 8:00 PM", description: "Celebrate summer with us at 2618 SSRR — front yard! Refreshing drinks & snacks, burgers and dogs off the grill, yard games, and a chance to connect with neighbors. Fun for everyone." },
     { date: "2026-09-12", title: "Annual HOA Meeting", time: "7:00 PM", description: "Annual membership meeting covering board elections, financials, and neighborhood priorities. All members welcome." },
     { date: "2026-10-31", title: "Halloween on the Ridge", time: "Dusk", description: "Trick-or-treating through the neighborhood. Residents are encouraged to decorate and hand out candy." },
     { date: "2026-12-06", title: "Holiday Luminary Night", time: "6:30 PM", description: "Light up the Ridge! Residents line driveways with luminaries for an evening stroll through the neighborhood. Supplies provided." },
@@ -841,7 +842,7 @@
     document.getElementById("nav-links").classList.toggle("open");
   }
 
-  function showPage(id) {
+  function showPage(id, scrollToId) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
     document.getElementById("page-" + id).classList.add("active");
@@ -849,7 +850,13 @@
     if (n) n.classList.add("active");
     document.getElementById("hamburger").classList.remove("open");
     document.getElementById("nav-links").classList.remove("open");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (scrollToId) {
+      const target = document.getElementById(scrollToId);
+      if (target) { target.scrollIntoView({ behavior: "smooth", block: "center" }); }
+      else { window.scrollTo({ top: 0, behavior: "smooth" }); }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     if (id === "calendar") { initCalendar(); }
     if (id === "documents") {
       if (isLoggedIn) { document.getElementById("login-view").style.display = "none"; document.getElementById("docs-view").style.display = "block"; }
