@@ -263,6 +263,7 @@
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 2.7 20h18.6L12 4Z"/><path d="M12 10v4.5"/><path d="M12 17.6h.01"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
 </svg>
 
 <nav>
@@ -277,6 +278,7 @@
       <li><a onclick="showPage('calendar')" id="nav-calendar">Social Calendar</a></li>
       <li><a onclick="showPage('crime')" id="nav-crime">Crime &amp; Safety</a></li>
       <li><a onclick="showPage('photos')" id="nav-photos">Historic Photos</a></li>
+      <li><a onclick="showPage('useful')" id="nav-useful">Useful Links</a></li>
       <li><a onclick="showPage('documents')" id="nav-documents" class="nav-btn-login"><svg class="icon"><use href="#i-lock"></use></svg>Member Documents</a></li>
     </ul>
   </div>
@@ -334,6 +336,7 @@
       <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon"><svg class="icon"><use href="#i-camera"></use></svg></div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
       <div class="quick-link" onclick="showPage('septic')"><div class="ql-icon"><svg class="icon"><use href="#i-wrench"></use></svg></div><div class="ql-title">Septic Information</div><div class="ql-sub">Tips &amp; sewer report</div></div>
       <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-mail"></use></svg></div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
+      <div class="quick-link" onclick="showPage('useful')"><div class="ql-icon"><svg class="icon"><use href="#i-link"></use></svg></div><div class="ql-title">Useful Links</div><div class="ql-sub">Local apps &amp; resources</div></div>
     </div>
   </div>
   <div class="news-bg">
@@ -448,10 +451,39 @@
   <div class="page-hero"><p class="page-hero-eyebrow">Community Safety</p><h1>Crime &amp; Safety</h1><p>Stay informed, stay safe, share with your neighbors</p></div>
   <div class="section">
     <div class="alert-box"><strong><svg class="icon alert-icon"><use href="#i-alert"></use></svg>Recent Alert: Mail Theft</strong>Several residents have reported mail theft resulting in fraudulent charges and identity theft. Invest in a locking mailbox or use USPS Hold Mail when traveling.</div>
+    <div class="crime-info"><h3><svg class="icon"><use href="#i-camera"></use></svg>Community Surveillance Cameras</h3><p>The Sunnyside Community Association maintains three stationary security cameras at the top of Sunnyside Ridge Road.</p><ul style="margin-top:0.5rem;"><li>One camera is an <strong>Automated License Plate Recognition (ALPR) system</strong> — a searchable database that reads and converts images of registration plates into computer-readable data (license plate image, vehicle image, plate number, date and time).</li><li>Two <strong>Reolink cameras</strong> capture motion of vehicles, people, or large animals — one points down the street and the other toward the SSRR entrance — providing video clips and photographs stamped with date and time.</li><li>To request video clips, license plate data, or images, contact <strong>Rainer Otto</strong>, <strong>Valerie Cardello</strong>, or <strong>Mike Sarullo</strong>.</li></ul><p style="margin-top:0.85rem;"><a class="card-link" href="pdf/Sunnyside%20Community%20Surveillance%20and%20ALPR%20Policy%202026.pdf" target="_blank">Read the full ALPR Usage &amp; Privacy Policy (PDF) →</a></p></div>
     <div class="crime-info"><h3><svg class="icon"><use href="#i-eye"></use></svg>What is Neighborhood Watch?</h3><p>As a member of an organized Neighborhood Watch, our street is part of a citywide crime prevention network connecting Neighborhood Watch, the Sheriff's Department, and Block Captains.</p><p style="margin-top:0.75rem;"><strong>How it works:</strong></p><ul style="margin-top:0.5rem;"><li>Crime warnings are emailed to Block Captains</li><li>Block Captains disseminate alerts to Block Assistants</li><li>Alerts are shared with all participating Neighborhood Watch residents</li></ul></div>
     <div class="card-grid">
       <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-mail"></use></svg></div><h3>Hold Your Mail</h3><p>Prevent mail theft when you're on vacation. Put your USPS mail on hold online — it takes just a few minutes.</p><a class="card-link" href="https://holdmail.usps.com/holdmail/" target="_blank">Hold mail at USPS.com →</a></div>
       <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-lock"></use></svg></div><h3>Locking Mailboxes</h3><p>Consider upgrading to a locking mailbox to protect against the growing threat of mail theft and identity fraud in the area.</p></div>
+      <div class="card"><div class="card-icon"><svg class="icon"><use href="#i-shield"></use></svg></div><h3>Crime Mapping</h3><p>View recent reported crimes in our area on the LA County crime map to stay aware of local activity.</p><a class="card-link" href="https://www.crimemapping.com/map/ca/losangeles" target="_blank">Open CrimeMapping.com →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- USEFUL LINKS -->
+<div id="page-useful" class="page">
+  <div class="page-hero"><p class="page-hero-eyebrow">Resident Resources</p><h1>Useful Links</h1><p>Local apps and resources for SSRR residents</p></div>
+  <div class="section">
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon"><svg class="icon"><use href="#i-home"></use></svg></div>
+        <h3>MyRPV App</h3>
+        <p>The City of Rancho Palos Verdes' official app — report issues like potholes, graffiti, and sign damage, track your requests, and access City services and meeting agendas.</p>
+        <p style="display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.75rem;">
+          <a class="card-link" href="https://apps.apple.com/us/app/myrpv/id1540763039" target="_blank">Apple App Store →</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.govoutreach.ranchopalosverdesca" target="_blank">Google Play →</a>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg class="icon"><use href="#i-alert"></use></svg></div>
+        <h3>MyShake App</h3>
+        <p>California's free earthquake early-warning app (UC Berkeley, USGS ShakeAlert &amp; Cal OES) — receive alerts seconds before shaking arrives.</p>
+        <p style="display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.75rem;">
+          <a class="card-link" href="https://apps.apple.com/us/app/myshake-earthquake-alerts/id1467058529" target="_blank">Apple App Store →</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=edu.berkeley.bsl.myshake" target="_blank">Google Play →</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -655,6 +687,9 @@
       <div class="member-tabs">
         <button class="member-tab active" onclick="switchMemberTab('tab-governance', this)">📋 Governance</button>
         <button class="member-tab" onclick="switchMemberTab('tab-minutes', this)">📝 Meeting Minutes</button>
+        <button class="member-tab" onclick="switchMemberTab('tab-resources', this)">📁 Projects/Resources</button>
+        <button class="member-tab" onclick="switchMemberTab('tab-social', this)">🎉 SSRR Social Events</button>
+        <button class="member-tab" onclick="switchMemberTab('tab-cameras', this)">📹 SSRR Surveillance Cameras</button>
       </div>
     </div>
 
@@ -712,6 +747,33 @@
           <li class="doc-item"><div class="doc-item-left"><span class="doc-icon"><svg class="icon"><use href="#i-document"></use></svg></span><div><div class="doc-name">2025 Annual Meeting — Agenda</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/2025/2025%20Annual%20Meeting%20Packet/2025%20Annual%20Mtg%20Agenda.pdf" target="_blank" download>↓ PDF</a></li>
           <li class="doc-item"><div class="doc-item-left"><span class="doc-icon"><svg class="icon"><use href="#i-document"></use></svg></span><div><div class="doc-name">2025 Annual Meeting — Slides</div><div class="doc-meta">PDF Document</div></div></div><a class="doc-download" href="pdf/2025/2025%20Annual%20Meeting%20Packet/2025%20Annual%20Meeting%20Sldes.pdf" target="_blank" download>↓ PDF</a></li>          </ul>
         </div>
+      </div>
+
+      <!-- TAB: PROJECTS / RESOURCES -->
+      <div id="tab-resources" class="member-tab-panel" style="display:none;">
+        <div class="doc-category">
+          <h3>Septic &amp; Sewer</h3>
+          <ul class="doc-list">
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon"><svg class="icon"><use href="#i-document"></use></svg></span><div><div class="doc-name">HOA Septic System Tips (2025)</div><div class="doc-meta">159 KB · PDF</div></div></div><a class="doc-download" href="pdf/septic/HOA%20Septic%20System%20Tips%202025.pdf" target="_blank" download>↓ PDF</a></li>
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon"><svg class="icon"><use href="#i-document"></use></svg></span><div><div class="doc-name">HOA Sewer Project Report (Final 2025)</div><div class="doc-meta">98 KB · PDF</div></div></div><a class="doc-download" href="pdf/septic/HOA%20Sewer%20Project%20Report%20Final%202025.pdf" target="_blank" download>↓ PDF</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TAB: SSRR SOCIAL EVENTS -->
+      <div id="tab-social" class="member-tab-panel" style="display:none;">
+        <div class="doc-category">
+          <h3>2026 Summer Social — August 22</h3>
+          <p style="color:var(--stone);">Photos from the Summer Social will be posted here soon.</p>
+        </div>
+      </div>
+
+      <!-- TAB: SSRR SURVEILLANCE CAMERAS -->
+      <div id="tab-cameras" class="member-tab-panel" style="display:none;">
+        <div class="crime-info"><h3><svg class="icon"><use href="#i-camera"></use></svg>Community Surveillance Cameras</h3><p>The Sunnyside Community Association maintains three stationary security cameras at the top of Sunnyside Ridge Road.</p><ul style="margin-top:0.5rem;"><li>One camera is an <strong>Automated License Plate Recognition (ALPR) system</strong> — a searchable database that reads and converts images of registration plates into computer-readable data (license plate image, vehicle image, plate number, date and time).</li><li>Two <strong>Reolink cameras</strong> capture motion of vehicles, people, or large animals — one points down the street and the other toward the SSRR entrance — providing video clips and photographs stamped with date and time.</li><li>To request video clips, license plate data, or images, contact <strong>Rainer Otto</strong>, <strong>Valerie Cardello</strong>, or <strong>Mike Sarullo</strong>.</li></ul></div>
+        <ul class="doc-list" style="margin-top:1.25rem;">
+          <li class="doc-item"><div class="doc-item-left"><span class="doc-icon"><svg class="icon"><use href="#i-document"></use></svg></span><div><div class="doc-name">ALPR Usage &amp; Privacy Policy (2026)</div><div class="doc-meta">56 KB · PDF</div></div></div><a class="doc-download" href="pdf/Sunnyside%20Community%20Surveillance%20and%20ALPR%20Policy%202026.pdf" target="_blank" download>↓ PDF</a></li>
+        </ul>
       </div>
 
 
@@ -945,6 +1007,11 @@
       { label: "Septic Information", sub: "Tips & sewer project report", act: () => showPage("septic") },
       { label: "HOA Septic System Tips (2025)", sub: "Septic Information · PDF", act: () => window.open("pdf/septic/HOA%20Septic%20System%20Tips%202025.pdf", "_blank") },
       { label: "HOA Sewer Project Report (Final 2025)", sub: "Septic Information · PDF", act: () => window.open("pdf/septic/HOA%20Sewer%20Project%20Report%20Final%202025.pdf", "_blank") },
+      { label: "Useful Links", sub: "Local apps & resources", act: () => showPage("useful") },
+      { label: "MyRPV App", sub: "Useful Links · City of RPV app", act: () => showPage("useful") },
+      { label: "MyShake App", sub: "Useful Links · earthquake alerts", act: () => showPage("useful") },
+      { label: "Community Surveillance Cameras", sub: "Crime & Safety · ALPR policy", act: () => showPage("crime") },
+      { label: "Crime Mapping", sub: "LA County crime map", act: () => window.open("https://www.crimemapping.com/map/ca/losangeles", "_blank") },
     ];
     CALENDAR_EVENTS.forEach(e => idx.push({ label: e.title, sub: "Event · " + prettyDate(e.date), act: () => goToEvent(e.date) }));
     document.querySelectorAll("#page-documents .doc-name").forEach(el =>
