@@ -298,6 +298,12 @@
     </div>
   </div>
   <div class="section" style="padding-bottom:0;">
+    <div class="quick-links" style="max-width:760px;margin:0 auto;grid-template-columns:1fr 1fr;">
+      <div class="quick-link" onclick="window.open('pdf/2025/Vision%20for%20the%20SSRR%20Community.pdf','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-users"></use></svg></div><div class="ql-title">SSRR Community Vision</div><div class="ql-sub">Our vision, mission &amp; values</div></div>
+      <div class="quick-link" onclick="showPage('useful')"><div class="ql-icon"><svg class="icon"><use href="#i-link"></use></svg></div><div class="ql-title">Useful Links</div><div class="ql-sub">Local apps &amp; resources</div></div>
+    </div>
+  </div>
+  <div class="section" style="padding-bottom:0;">
     <div class="section-header" style="margin-bottom:1.25rem;">
       <p class="section-eyebrow">Find What You Need</p>
       <h2 class="section-title" style="font-size:1.7rem;">Search the Site</h2>
@@ -336,7 +342,6 @@
       <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon"><svg class="icon"><use href="#i-camera"></use></svg></div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
       <div class="quick-link" onclick="showPage('septic')"><div class="ql-icon"><svg class="icon"><use href="#i-wrench"></use></svg></div><div class="ql-title">Septic Information</div><div class="ql-sub">Tips &amp; sewer report</div></div>
       <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-mail"></use></svg></div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
-      <div class="quick-link" onclick="showPage('useful')"><div class="ql-icon"><svg class="icon"><use href="#i-link"></use></svg></div><div class="ql-title">Useful Links</div><div class="ql-sub">Local apps &amp; resources</div></div>
     </div>
   </div>
   <div class="news-bg">
@@ -1007,6 +1012,7 @@
       { label: "Septic Information", sub: "Tips & sewer project report", act: () => showPage("septic") },
       { label: "HOA Septic System Tips (2025)", sub: "Septic Information · PDF", act: () => window.open("pdf/septic/HOA%20Septic%20System%20Tips%202025.pdf", "_blank") },
       { label: "HOA Sewer Project Report (Final 2025)", sub: "Septic Information · PDF", act: () => window.open("pdf/septic/HOA%20Sewer%20Project%20Report%20Final%202025.pdf", "_blank") },
+      { label: "SSRR Community Vision", sub: "Vision, mission & values · PDF", act: () => window.open("pdf/2025/Vision%20for%20the%20SSRR%20Community.pdf", "_blank") },
       { label: "Useful Links", sub: "Local apps & resources", act: () => showPage("useful") },
       { label: "MyRPV App", sub: "Useful Links · City of RPV app", act: () => showPage("useful") },
       { label: "MyShake App", sub: "Useful Links · earthquake alerts", act: () => showPage("useful") },
