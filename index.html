@@ -299,7 +299,7 @@
   </div>
   <div class="section" style="padding-bottom:0;">
     <div class="quick-links" style="max-width:760px;margin:0 auto;grid-template-columns:1fr 1fr;">
-      <div class="quick-link" onclick="window.open('pdf/2025/Vision%20for%20the%20SSRR%20Community.pdf','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-users"></use></svg></div><div class="ql-title">SSRR Community Vision</div><div class="ql-sub">Our vision, mission &amp; values</div></div>
+      <div class="quick-link" onclick="gcEvent('pdf: Vision for the SSRR Community.pdf','SSRR Community Vision'); window.open('pdf/2025/Vision%20for%20the%20SSRR%20Community.pdf','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-users"></use></svg></div><div class="ql-title">SSRR Community Vision</div><div class="ql-sub">Our vision, mission &amp; values</div></div>
       <div class="quick-link" onclick="showPage('useful')"><div class="ql-icon"><svg class="icon"><use href="#i-link"></use></svg></div><div class="ql-title">Useful Links</div><div class="ql-sub">Local apps &amp; resources</div></div>
     </div>
   </div>
@@ -341,7 +341,7 @@
       <div class="quick-link" onclick="showPage('crime')"><div class="ql-icon"><svg class="icon"><use href="#i-shield"></use></svg></div><div class="ql-title">Crime &amp; Safety</div><div class="ql-sub">Reports &amp; watch</div></div>
       <div class="quick-link" onclick="showPage('photos')"><div class="ql-icon"><svg class="icon"><use href="#i-camera"></use></svg></div><div class="ql-title">Historic Photos</div><div class="ql-sub">156 PV images</div></div>
       <div class="quick-link" onclick="showPage('septic')"><div class="ql-icon"><svg class="icon"><use href="#i-wrench"></use></svg></div><div class="ql-title">Septic Information</div><div class="ql-sub">Tips &amp; sewer report</div></div>
-      <div class="quick-link" onclick="window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-mail"></use></svg></div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
+      <div class="quick-link" onclick="gcEvent('outbound: holdmail.usps.com','Hold Your Mail'); window.open('https://holdmail.usps.com/holdmail/','_blank')"><div class="ql-icon"><svg class="icon"><use href="#i-mail"></use></svg></div><div class="ql-title">Hold Your Mail</div><div class="ql-sub">USPS online hold</div></div>
     </div>
   </div>
   <div class="news-bg">
@@ -914,6 +914,7 @@
     document.getElementById(tabId).style.display = "block";
     btn.classList.add("active");
     if (tabId === "tab-lot") renderLotItems();
+    gcCount("documents/" + tabId.replace("tab-", ""));
   }
 
   function toggleMenu() {
@@ -941,6 +942,7 @@
       if (isLoggedIn) { document.getElementById("login-view").style.display = "none"; document.getElementById("docs-view").style.display = "block"; }
       else { document.getElementById("login-view").style.display = "block"; document.getElementById("docs-view").style.display = "none"; }
     }
+    gcCount(id);
   }
 
   async function attemptLogin() {
@@ -1068,6 +1070,34 @@
       if (b) b.classList.remove("open");
     }
   });
+
+  // ---- GoatCounter analytics (privacy-friendly, no cookies) ----
+  // Section views are recorded via gcCount() from showPage()/switchMemberTab();
+  // PDF opens and outbound links are recorded as events by the handler below.
+  function gcCount(id) {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: (id === "home" ? "/" : "/" + id), title: document.title });
+    }
+  }
+  function gcEvent(path, title) {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: path, title: title || path, event: true });
+    }
+  }
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (/^https?:\/\//i.test(href)) {
+      try { const h = new URL(href).host; if (h !== location.host) gcEvent("outbound: " + h, (a.textContent || "").trim() || href); } catch (_) {}
+    } else if (/\.pdf($|\?|#)/i.test(href)) {
+      gcEvent("pdf: " + decodeURIComponent(href.split("/").pop()), (a.textContent || "").trim());
+    }
+  });
 </script>
+
+<!-- GoatCounter — privacy-friendly analytics (no cookies, anonymous) -->
+<script data-goatcounter="https://sunnyside.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
