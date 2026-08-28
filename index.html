@@ -797,6 +797,7 @@
   <div style="margin-top:0.25rem;margin-bottom:1rem;font-style:italic;color:rgba(255,255,255,0.4);">Live in the Clouds…</div>
   <div>Sunnyside Ridge Rd · Sol Vista · Palos Verdes Drive East · Rancho Palos Verdes, CA</div>
   <div style="margin-top:0.75rem;">Est. 1955 · <a onclick="showPage('documents')">Member Documents</a></div>
+  <div id="visitor-counter" hidden style="margin-top:0.9rem;font-size:0.8rem;letter-spacing:0.03em;color:rgba(255,255,255,0.45);"></div>
 </footer>
 
 <script>
@@ -1094,6 +1095,19 @@
       gcEvent("pdf: " + decodeURIComponent(href.split("/").pop()), (a.textContent || "").trim());
     }
   });
+
+  // Public visitor counter in the footer (GoatCounter TOTAL endpoint).
+  // Stays hidden if the counter isn't enabled or the request fails.
+  fetch("https://sunnyside.goatcounter.com/counter/TOTAL.json")
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => {
+      const el = document.getElementById("visitor-counter");
+      if (!el) return;
+      const n = d.count_unique || d.count;
+      el.textContent = "👁  " + n + (n === "1" ? " visitor" : " visitors");
+      el.hidden = false;
+    })
+    .catch(() => {});
 </script>
 
 <!-- GoatCounter — privacy-friendly analytics (no cookies, anonymous) -->
